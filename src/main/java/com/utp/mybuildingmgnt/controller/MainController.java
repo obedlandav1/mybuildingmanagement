@@ -26,6 +26,14 @@ public class MainController {
         return "layout/building";
     }
 
-    
+    @GetMapping("/building-create")
+    public String buildingcreate() {
+        return "layout/building-create";
+    }
+
+    @GetMapping("/building-edit")
+    public String buildingedit() {
+        return "layout/building-edit";
+    }
 
 }

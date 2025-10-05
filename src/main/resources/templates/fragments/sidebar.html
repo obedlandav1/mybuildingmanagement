@@ -1,0 +1,132 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" th:fragment="sidebar">
+    <div class="app-brand demo">
+        <a th:href="@{/main}" class="app-brand-link">
+            <h4 class="demo menu-text fw-bolder ms-0 mt-0 mb-0">My building<br>Management</h4>
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1">
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Administrador</span>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div data-i18n="Account Settings">Gestión edificios</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a th:href="@{/building}" class="menu-link">
+                        <div data-i18n="Account">Edificios</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-account-settings-notifications.html" class="menu-link">
+                        <div data-i18n="Notifications">Inmuebles</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-account-settings-connections.html" class="menu-link">
+                        <div data-i18n="Connections">Propietarios</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                <div data-i18n="Authentications">Gestión de tesorería</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Presupuestos</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Recibos</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Ingresos</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="auth-forgot-password-basic.html" class="menu-link" target="_blank">
+                        <div data-i18n="Basic">Egresos</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="Misc">Reportes</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="pages-misc-error.html" class="menu-link">
+                        <div data-i18n="Error">Balance mensual</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-misc-under-maintenance.html" class="menu-link">
+                        <div data-i18n="Under Maintenance">Historico M3</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-misc-under-maintenance.html" class="menu-link">
+                        <div data-i18n="Under Maintenance">Por pagar</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Propietario</span>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="Misc">Pagar recibo</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="Misc">Ver recibos</div>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
+                <div data-i18n="Misc">Reportes</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="pages-misc-error.html" class="menu-link">
+                        <div data-i18n="Error">Balance mensual</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-misc-under-maintenance.html" class="menu-link">
+                        <div data-i18n="Under Maintenance">Historico M3</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="pages-misc-under-maintenance.html" class="menu-link">
+                        <div data-i18n="Under Maintenance">Pago proveedores</div>
+                    </a>
+                </li>
+            </ul>
+        </li>
+</aside>
