@@ -35,5 +35,9 @@ public class MainController {
     public String buildingedit() {
         return "layout/building-edit";
     }
-
+    
+    @GetMapping("/estate")
+    public String estate() {
+        return "layout/estate";
+    }
 }
