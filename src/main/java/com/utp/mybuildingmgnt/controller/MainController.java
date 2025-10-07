@@ -40,4 +40,9 @@ public class MainController {
     public String estate() {
         return "layout/estate";
     }
+
+    @GetMapping("/owner")
+    public String owner() {
+        return "layout/owner";
+    }
 }
