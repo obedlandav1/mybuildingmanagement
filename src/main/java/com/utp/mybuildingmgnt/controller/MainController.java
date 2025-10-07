@@ -35,7 +35,7 @@ public class MainController {
     public String buildingedit() {
         return "layout/building-edit";
     }
-    
+
     @GetMapping("/estate")
     public String estate() {
         return "layout/estate";
@@ -46,13 +46,23 @@ public class MainController {
         return "layout/owner";
     }
 
-    @GetMapping ("/income")
-    public String income(){
+    @GetMapping("/budget")
+    public String budget() {
+        return "layout/budget";
+    }
+
+    @GetMapping("/bills")
+    public String bills() {
+        return "layout/bills";
+    }
+
+    @GetMapping("/income")
+    public String income() {
         return "layout/income";
     }
 
-    @GetMapping ("/expense")
-    public String expense(){
+    @GetMapping("/expense")
+    public String expense() {
         return "layout/expense";
     }
 }
