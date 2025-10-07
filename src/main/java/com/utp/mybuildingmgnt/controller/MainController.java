@@ -45,4 +45,14 @@ public class MainController {
     public String owner() {
         return "layout/owner";
     }
+
+    @GetMapping ("/income")
+    public String income(){
+        return "layout/income";
+    }
+
+    @GetMapping ("/expense")
+    public String expense(){
+        return "layout/expense";
+    }
 }
