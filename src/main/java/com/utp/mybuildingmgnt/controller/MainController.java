@@ -41,6 +41,11 @@ public class MainController {
         return "layout/estate";
     }
 
+    @GetMapping("/estate-create")
+    public String estatecreate(){
+        return "layout/estate-create";
+    }
+
     @GetMapping("/owner")
     public String owner() {
         return "layout/owner";
