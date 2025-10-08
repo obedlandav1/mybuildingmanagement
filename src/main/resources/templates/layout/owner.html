@@ -2,7 +2,7 @@
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
     data-template="vertical-menu-template-free">
 
-<head th:replace="~{fragments/head :: head('Edificios')}"></head>
+<head th:replace="~{fragments/head :: head('Propietarios')}"></head>
 
 <body>
     <!-- Layout wrapper -->
@@ -30,7 +30,7 @@
     </h4>
 
     <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
-        <a th:href="@{/building-create}">
+        <a th:href="@{/owner-create}">
             <button type="button" class="btn btn-primary">Crear</button>
         </a>
 
@@ -83,7 +83,7 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
+                                                        <a th:href="@{/owner-edit}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
                                                                 class="bx bx-edit-alt me-1"></i> Editar</a>
                                                         <a href="javascript:void(0);" class="dropdown-item"
@@ -110,7 +110,7 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
+                                                        <a th:href="@{/owner-edit}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
                                                                 class="bx bx-edit-alt me-1"></i> Editar</a>
                                                        <a href="javascript:void(0);" class="dropdown-item"
@@ -136,7 +136,7 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
+                                                        <a th:href="@{/owner-edit}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
                                                                 class="bx bx-edit-alt me-1"></i> Editar</a>
                                                         <a href="javascript:void(0);" class="dropdown-item"
@@ -163,7 +163,7 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
+                                                        <a th:href="@{/owner-edit}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
                                                                 class="bx bx-edit-alt me-1"></i> Editar</a>
                                                        <a href="javascript:void(0);" class="dropdown-item"
@@ -189,7 +189,7 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
+                                                        <a th:href="@{/owner-edit}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
                                                                 class="bx bx-edit-alt me-1"></i> Editar</a>
                                                         <a href="javascript:void(0);" class="dropdown-item"

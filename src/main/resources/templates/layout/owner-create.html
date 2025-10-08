@@ -2,7 +2,7 @@
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
     data-template="vertical-menu-template-free">
 
-<head th:replace="~{fragments/head :: head('Editar edificio')}"></head>
+<head th:replace="~{fragments/head :: head('Crear Propietario')}"></head>
 
 <body>
     <!-- Layout wrapper -->
@@ -25,9 +25,9 @@
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
-                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Editar /</span> Edificio
+                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Crear /</span> Propietario
                             </h4>
-                            <a th:href="@{/building}">
+                            <a th:href="@{/owner}">
                                 <button type="button" class="btn btn-primary">Regresar</button>
                             </a>
                         </div>
@@ -41,40 +41,59 @@
                                 <div class="card-body">
                                     <form>
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-name">Nombre del
-                                                edificio</label>
+                                            <label class="col-sm-2 col-form-label" for="basic-default-name">
+                                                DNI</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="basic-default-name"
-                                                    placeholder="Ingrese nombre de edificio" />
+                                                    placeholder="Ingrese el número de DNI del propietario" />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-company">Dirección
-                                                del edificio</label>
+                                            <label class="col-sm-2 col-form-label" for="basic-default-company">
+                                                Nombre</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese la dirección completa del edificio" />
+                                                    placeholder="Ingrese el primer nombre del propietario" />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-email">Número de
-                                                RUC</label>
+                                            <label class="col-sm-2 col-form-label" for="basic-default-email">
+                                                Apellido</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Opcional" />
+                                                    placeholder="Ingrese el primer apellido del propietario" />
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label"
-                                                for="basic-default-message">Pais</label>
+                                                for="basic-default-message">
+                                                Num Inmueble</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el país del edificio" />
+                                                    placeholder="Ingrese el número de inmueble del propietario" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label"
+                                                for="basic-default-message">
+                                                Teléfono</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="basic-default-company"
+                                                    placeholder="Ingrese el número de teléfono del propietario" />
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label"
+                                                for="basic-default-message">
+                                                Estado</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="basic-default-company"
+                                                    placeholder="Ingrese el estado del propietario" />
                                             </div>
                                         </div>
                                         <div class="row justify-content-end">
                                             <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                <button type="submit" class="btn btn-primary">Crear</button>
                                             </div>
                                         </div>
                                     </form>

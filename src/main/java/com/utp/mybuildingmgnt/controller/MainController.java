@@ -46,9 +46,24 @@ public class MainController {
         return "layout/estate-create";
     }
 
+    @GetMapping("/estate-edit")
+    public String estateedit(){
+        return "layout/estate-edit";
+    }
+
     @GetMapping("/owner")
     public String owner() {
         return "layout/owner";
+    }
+
+     @GetMapping("/owner-create")
+    public String ownercreate() {
+        return "layout/owner-create";
+    }
+
+     @GetMapping("/owner-edit")
+    public String owneredit() {
+        return "layout/owner-edit";
     }
 
     @GetMapping("/budget")
