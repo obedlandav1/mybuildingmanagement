@@ -81,8 +81,28 @@ public class MainController {
         return "layout/income";
     }
 
+    @GetMapping("/income-create")
+    public String incomecreate() {
+        return "layout/income-create";
+    }
+
+    @GetMapping("/income-edit")
+    public String incomeedit() {
+        return "layout/income-edit";
+    }
+
     @GetMapping("/expense")
     public String expense() {
         return "layout/expense";
+    }
+
+     @GetMapping("/expense-create")
+    public String expensecreate() {
+        return "layout/expense-create";
+    }
+
+     @GetMapping("/expense-edit")
+    public String expenseedit() {
+        return "layout/expense-edit";
     }
 }
