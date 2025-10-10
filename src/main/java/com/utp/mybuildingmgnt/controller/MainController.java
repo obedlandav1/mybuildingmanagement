@@ -71,6 +71,16 @@ public class MainController {
         return "layout/budget";
     }
 
+    @GetMapping("/budget-create")
+    public String budgetcreate() {
+        return "layout/budget-create";
+    }
+
+     @GetMapping("/budget-edit")
+    public String budgetedit() {
+        return "layout/budget-edit";
+    }
+
     @GetMapping("/bills")
     public String bills() {
         return "layout/bills";
