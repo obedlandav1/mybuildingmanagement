@@ -27,12 +27,116 @@
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Generar /</span> Recibos
                             </h4>
-                            <a th:href="@{/building-create}">
-                                <button type="button" class="btn btn-primary">Crear</button>
-                            </a>
+                            <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
+                                <a th:href="@{/building-create}">
+                                    <button type="button" class="btn btn-primary">Generar recibos</button>
+                                </a>
+                                <a th:href="@{/building-create}">
+                                    <button type="button" class="btn btn-primary">Exportar recibos</button>
+                                </a>
+                                <a th:href="@{/building-create}">
+                                    <button type="button" class="btn btn-primary">Descartar recibos</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-6 mb-4">
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{/img/icons/unicons/cc-primary.png}" alt="chart success"
+                                                    class="rounded" />
+                                            </div>
+                                            <div class="dropdown">
+                                                <div class="col-lg-3 col-sm-6 col-12">
+                                                    <!--<small class="text-light fw-semibold">Elija edificio</small>-->
+                                                    <div class="">
+                                                        <div class="btn-group">
+                                                            <button type="button"
+                                                                class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                <li><a class="dropdown-item"
+                                                                        href="javascript:void(0);">Residencial
+                                                                        Recuay</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="javascript:void(0);">Edificio
+                                                                        Alto Huaraz</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="javascript:void(0);">Residencial
+                                                                        UTP Lima Centro</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="javascript:void(0);">Residencial
+                                                                        Los jardines espalda UTP</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="javascript:void(0);">Residencial piso 13
+                                                                        UTP</a></li>
+                                                                <li><a class="dropdown-item"
+                                                                        href="javascript:void(0);">Residencial
+                                                                        Edificio rosado</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Edificio</span>
+                                        <h3 class="card-title mb-2">Residencal Recuay</h3>
+                                        <!--<small class="text-success fw-semibold"><i
+                                                            class="bx bx-up-arrow-alt"></i>
+                                                        +72.80%</small>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{/img/icons/unicons/cc-primary.png}" alt="chart success"
+                                                    class="rounded" />
+                                            </div>
+                                            <div class="dropdown">
+                                                <div class="col-lg-3 col-sm-6 col-12">
+                                                    <!--<small class="text-light fw-semibold">Elija edificio</small>-->
+                                                    <div class="">
+                                                        <div class="btn-group">
+                                                            <button type="button"
+                                                                class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"
+                                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 01</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 02</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 03</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 04</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 05</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 06</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 07</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 08</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 09</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 10</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 11</a></li>
+                                                                <li><a class="dropdown-item" href="javascript:void(0);">2025 12</a></li>                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Periodo ppto.</span>
+                                        <h3 class="card-title mb-2">2025 01</h3>
+                                        <!--<small class="text-success fw-semibold"><i
+                                                            class="bx bx-up-arrow-alt"></i>
+                                                        +72.80%</small>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="card-title d-flex align-items-start justify-content-between">
@@ -70,23 +174,29 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Nombre</th>
-                                            <th>Dirección</th>
-                                            <th>Pais</th>
-                                            <th>Estado</th>
+                                            <th>Propietario</th>
+                                            <th>%Participacion</th>
+                                            <th>Periodo</th>
+                                            <th>Fecha emision</th>
+                                            <th>Fecha vncto.</th>
+                                            <th>Num. recibo</th>
+                                            <th>Monto recibo</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
                                         <tr>
                                             <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Residencial Recuay</strong>
+                                                <strong>Obed Landa</strong>
                                             </td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
+                                            <td>2.53%</td>
+                                            <td>202510</td>
+                                            <td>2025-09-28</td>
+                                            <td>2025-10-02</td>
+                                            <td>2025100000001</td>
+                                            <td>S/ 159.87</td>
                                             <td>
-                                                <div class="dropdown">
+                                                <div class="dropdown dropstart" data-bs-display="static">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                         data-bs-toggle="dropdown">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
@@ -94,108 +204,11 @@
                                                     <div class="dropdown-menu">
                                                         <a th:href="@{/building-edit}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
+                                                                class="bx bx-edit-alt me-1"></i>
+                                                            Ver recibo</a>
                                                         <a href="javascript:void(0);" class="dropdown-item"
                                                             data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Residencial Breña</strong>
-                                            </td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Edificio
-                                                    Mariano Pacheco</strong></td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Residencial Mariano Cornejo</strong>
-                                            </td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Edificio
-                                                    Alto Huaraz</strong></td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
+                                                            <i class="bx bx-trash me-1"></i> Descargar
                                                         </a>
                                                     </div>
                                                 </div>

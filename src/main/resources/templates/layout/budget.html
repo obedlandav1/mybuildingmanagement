@@ -30,9 +30,25 @@
                             </h4>
 
                             <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
-                                <a th:href="@{/budget-create}">
-                                    <button type="button" class="btn btn-primary">Añadir concepto</button>
-                                </a>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Elegir Edificio
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Recuay</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Breña</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Edificio Mariano
+                                                Pacheco</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Mariano
+                                                Cornejo</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Edificio Alto Huaraz</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-primary dropdown-toggle"
                                         data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,24 +69,9 @@
                                         <li><a class="dropdown-item" href="javascript:void(0);">2025 12</a></li>
                                     </ul>
                                 </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Elegir Edificio
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Recuay</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Breña</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Edificio Mariano
-                                                Pacheco</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Mariano
-                                                Cornejo</a></li>
-                                        <li><a class="dropdown-item" href="javascript:void(0);">Edificio Alto Huaraz</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a th:href="@{/budget-create}">
+                                    <button type="button" class="btn btn-primary">Añadir concepto</button>
+                                </a>
                             </div>
                         </div>
 
@@ -85,14 +86,14 @@
                                                     <div
                                                         class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                                                         <div class="card-title">
-                                                            <h5 class="text-nowrap mb-2">Balance del mes</h5>
+                                                            <h5 class="text-nowrap mb-2">Edificio</h5>
                                                             <span class="badge bg-label-warning rounded-pill">Seleccione
-                                                                periodo</span>
+                                                                edificio</span>
                                                         </div>
                                                         <div class="mt-sm-auto">
                                                             <!--<small class="text-success text-nowrap fw-semibold"><i
                                                                     class="bx bx-chevron-up"></i> 68.2%</small>-->
-                                                            <h3 class="mb-0">S/ 250.00</h3>
+                                                            <h3 class="mb-0">Residencial Recuay</h3>
                                                         </div>
                                                     </div>
                                                     <!--<div id="profileReportChart"></div>-->
@@ -166,6 +167,29 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-12 mb-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <div
+                                                    class="d-flex justify-content-between flex-sm-row flex-column gap-3">
+                                                    <div
+                                                        class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
+                                                        <div class="card-title">
+                                                            <h5 class="text-nowrap mb-2">Balance del mes</h5>
+                                                            <span class="badge bg-label-warning rounded-pill">Seleccione
+                                                                periodo</span>
+                                                        </div>
+                                                        <div class="mt-sm-auto">
+                                                            <!--<small class="text-success text-nowrap fw-semibold"><i
+                                                                    class="bx bx-chevron-up"></i> 68.2%</small>-->
+                                                            <h3 class="mb-0">S/ 250.00</h3>
+                                                        </div>
+                                                    </div>
+                                                    <!--<div id="profileReportChart"></div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-7">
                                     <!-- Transactions -->
@@ -182,6 +206,8 @@
                                                     <div class="btn-group" role="group" aria-label="Basic example">
                                                         <button type="button"
                                                             class="btn btn-secondary">Anterior</button>
+                                                        <button type="button" class="btn btn-secondary">Registrar
+                                                            m3</button>
                                                         <button type="button"
                                                             class="btn btn-secondary">Siguiente</button>
                                                     </div>
@@ -232,7 +258,7 @@
                                                             class="rounded w-45 h-45" />
                                                     </div>
                                                     <div class="col-5 p-0">
-                                                        <h6 class="mb-0">Agua departamento</h6>
+                                                        <h6 class="mb-0">Agua departamentos</h6>
                                                     </div>
                                                     <div class="col-3 p-0">
                                                         <div
@@ -488,19 +514,19 @@
                                                                 class="btn p-0 dropdown-toggle hide-arrow"
                                                                 data-bs-toggle="dropdown">
                                                                 <i class="bx bx-dots-vertical-rounded"></i>
-                                                            <div class="dropdown-menu">
-                                                                <a th:href="@{/budget-edit}" class="dropdown-item"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="bx bx-edit-alt me-1"></i> Ver
-                                                                    comprobante</a>
-                                                                <a th:href="@{/building-edit}" class="dropdown-item"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                                <a th:href="@{/building-edit}" class="dropdown-item"
-                                                                    href="javascript:void(0);"><i
-                                                                        class="bx bx-edit-alt me-1"></i> Eliminar
-                                                                </a>
-                                                            </div>
+                                                                <div class="dropdown-menu">
+                                                                    <a th:href="@{/budget-edit}" class="dropdown-item"
+                                                                        href="javascript:void(0);"><i
+                                                                            class="bx bx-edit-alt me-1"></i> Ver
+                                                                        comprobante</a>
+                                                                    <a th:href="@{/building-edit}" class="dropdown-item"
+                                                                        href="javascript:void(0);"><i
+                                                                            class="bx bx-edit-alt me-1"></i> Editar</a>
+                                                                    <a th:href="@{/building-edit}" class="dropdown-item"
+                                                                        href="javascript:void(0);"><i
+                                                                            class="bx bx-edit-alt me-1"></i> Eliminar
+                                                                    </a>
+                                                                </div>
                                                         </div>
                                                     </div>
                                                 </div>
