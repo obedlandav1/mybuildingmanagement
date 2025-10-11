@@ -128,5 +128,10 @@ public class MainController {
     }
 
 
+     @GetMapping("/receiptpay")
+    public String receiptpay() {
+        return "layout/receippayt";
+    }
+
 
 }
