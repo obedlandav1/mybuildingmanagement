@@ -27,67 +27,24 @@
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Generar /</span> Recibos
                             </h4>
-                            <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
-                                <a th:href="@{/building-create}">
-                                    <button type="button" class="btn btn-primary">Generar recibos</button>
-                                </a>
-                                <a th:href="@{/building-create}">
-                                    <button type="button" class="btn btn-primary">Exportar recibos</button>
-                                </a>
-                                <a th:href="@{/building-create}">
-                                    <button type="button" class="btn btn-primary">Descartar recibos</button>
-                                </a>
-                            </div>
+                            
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-4 col-4 mb-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                       
                                             <div class="avatar flex-shrink-0">
                                                 <img th:src="@{/img/icons/unicons/cc-primary.png}" alt="chart success"
                                                     class="rounded" />
                                             </div>
-                                            <div class="dropdown">
-                                                <div class="col-lg-3 col-sm-6 col-12">
-                                                    <!--<small class="text-light fw-semibold">Elija edificio</small>-->
-                                                    <div class="">
-                                                        <div class="btn-group">
-                                                            <button type="button"
-                                                                class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"
-                                                                data-bs-toggle="dropdown" aria-expanded="false">
-                                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                                            </button>
-                                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                                <li><a class="dropdown-item"
-                                                                        href="javascript:void(0);">Residencial
-                                                                        Recuay</a></li>
-                                                                <li><a class="dropdown-item"
-                                                                        href="javascript:void(0);">Edificio
-                                                                        Alto Huaraz</a></li>
-                                                                <li><a class="dropdown-item"
-                                                                        href="javascript:void(0);">Residencial
-                                                                        UTP Lima Centro</a></li>
-                                                                <li><a class="dropdown-item"
-                                                                        href="javascript:void(0);">Residencial
-                                                                        Los jardines espalda UTP</a></li>
-                                                                <li><a class="dropdown-item"
-                                                                        href="javascript:void(0);">Residencial piso 13
-                                                                        UTP</a></li>
-                                                                <li><a class="dropdown-item"
-                                                                        href="javascript:void(0);">Residencial
-                                                                        Edificio rosado</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="fw-semibold d-block mb-1">Edificio</span>
-                                        <h3 class="card-title mb-2">Residencal Recuay</h3>
-                                        <!--<small class="text-success fw-semibold"><i
+                                            <span class="fw-semibold d-block mb-1">Edificio</span>
+                                            <h3 class="card-title mb-2">Residencal Recuay</h3>
+                                         <span class="badge bg-label-success">N° 1230018</span>
+                                            <!--<small class="text-success fw-semibold"><i
                                                             class="bx bx-up-arrow-alt"></i>
                                                         +72.80%</small>-->
+                                                  
                                     </div>
                                 </div>
                             </div>
@@ -139,27 +96,13 @@
                             <div class="col-lg-4 col-md-4 col-4 mb-4">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="card-title d-flex align-items-start justify-content-between">
-                                            <div class="avatar flex-shrink-0">
+                                         <div class="avatar flex-shrink-0">
                                                 <img th:src="@{/img/icons/unicons/cc-primary.png}" alt="chart success"
                                                     class="rounded" />
                                             </div>
-                                            <div class="dropdown">
-                                                <button class="btn p-0" type="button" id="cardOpt3"
-                                                    data-bs-toggle="dropdown" aria-haspopup="true"
-                                                    aria-expanded="false">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                    <a class="dropdown-item" href="javascript:void(0);">Ver
-                                                        detalle</a>
-                                                    <!--<a class="dropdown-item"
-                                                                    href="javascript:void(0);">Delete</a>-->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <span class="fw-semibold d-block mb-1">Gastos ppto.</span>
-                                        <h3 class="card-title mb-2">S/ 6319.01</h3>
+                                        <span class="fw-semibold d-block mb-1">Monto</span>
+                                        <h3 class="card-title mb-2">S/ 159.87</h3>
+                                        <span class="badge bg-label-danger">Vencido</span> <span class="badge bg-label-warning">Por pagar</span>
                                         <!--<small class="text-success fw-semibold"><i
                                                             class="bx bx-up-arrow-alt"></i>
                                                         +72.80%</small>-->
