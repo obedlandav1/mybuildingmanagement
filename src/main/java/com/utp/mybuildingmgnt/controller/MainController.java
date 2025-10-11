@@ -121,4 +121,12 @@ public class MainController {
     public String expenseedit() {
         return "layout/expense-edit";
     }
+
+     @GetMapping("/receipt")
+    public String receipt() {
+        return "layout/receipt";
+    }
+
+
+
 }
