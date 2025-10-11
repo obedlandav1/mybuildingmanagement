@@ -110,85 +110,146 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Basic Bootstrap Table -->
-                        <div class="card">
-                            <h5 class="card-header">Table Basic</h5>
-                            <div class="table-responsive text-nowrap">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Propietario</th>
-                                            <th>%Participacion</th>
-                                            <th>Periodo</th>
-                                            <th>Fecha emision</th>
-                                            <th>Fecha vncto.</th>
-                                            <th>Num. recibo</th>
-                                            <th>Monto recibo</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-border-bottom-0">
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Obed Landa</strong>
-                                            </td>
-                                            <td>2.53%</td>
-                                            <td>202510</td>
-                                            <td>2025-09-28</td>
-                                            <td>2025-10-02</td>
-                                            <td>2025100000001</td>
-                                            <td>S/ 159.87</td>
-                                            <td>
-                                                <div class="dropdown dropstart" data-bs-display="static">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i>
-                                                            Ver recibo</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Descargar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <!--/ Basic Bootstrap Table -->
+                       <div class="container my-4 p-4 bg-white shadow-sm rounded">
+                <div class="text-center mb-4">
+                <h4 class="fw-bold text-uppercase">Detalle de Recibo</h4>
+            </div>   
+  <!-- Tabla principal -->
+  <div class="table-responsive">
+    <table class="table table-bordered table-sm align-middle">
+      <thead class="table-secondary">
+        <tr>
+          <th>Descripción</th>
+          <th>Monto Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="fw-bold">GASTOS DE ADMINISTRACIÓN</td>
+            <td></td>
+        </tr>
+        <tr><td>Empresa administradora</td>
+            <td></td>
+        </tr>
 
-                        <!-- Toggle Between Modals -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="mt-3">
-                                <!-- Modal 1-->
-                                <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel"
-                                    tabindex="-1" style="display: none" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalToggleLabel">Eliminar Edificio</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">¿Desea eliminar el edificio? Esta acción no se puede
-                                                deshacer</div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-secondary"
-                                                    data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary">Eliminar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- / Toggle Between Modals -->
+        <tr><td class="fw-bold">SERVICIO DE SUMINISTRO DE AGUA</td>
+            <td></td>
+        </tr>
+        <tr>
+          <td>Consumo de agua individual - (Lectura: anterior 44.926, actual 46.579) P. Uni: S/ 3.615</td>
+          <td></td>
+        </tr>
+
+        <tr><td class="fw-bold">SERVICIOS PÚBLICOS</td>
+            <td></td>
+        </tr>
+        <tr><td>Agua común</td>
+            <td></td>
+        </tr>
+        <tr><td>Luz común - Edificio</td>
+            <td></td>
+        </tr>
+
+        <tr><td class="fw-bold">MANTENIMIENTO DE ACTIVOS - PREVENTIVOS</td>
+            <td></td>
+        </tr>
+        <tr><td>Presupuesto Anual aprobado 2025</td>
+            <td></td>
+        </tr>
+
+        <tr><td class="fw-bold">MANTENIMIENTO DE ÁREAS COMUNES DEL EDIFICIO</td>
+            <td></td>
+        </tr>
+        <tr><td>Insumos de limpieza</td>
+            <td></td>
+        </tr>
+
+        <tr><td class="fw-bold">CUOTA EXTRAORDINARIA</td>
+            <td></td>
+        </tr>
+        <tr><td>Cuota extraordinaria</td>
+            <td></td>
+        </tr>
+
+        <tr class="fw-bold text-end">
+          <td>SUBTOTAL</td>
+          <td></td>
+        </tr>
+        <tr class="text-end">
+          <td>Redondeo del mes anterior</td>
+          <td></td>
+        </tr>
+        <tr class="text-end">
+          <td>Redondeo del mes actual</td>
+          <td></td>
+        </tr>
+        <tr class="fw-bold text-end table-secondary">
+          <td>TOTAL DEL MES</td>
+          <td>S/ 159.87</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Indicaciones de pago -->
+  <div class="text-center mt-3 mb-4">
+    <strong class="text-uppercase">Realice sus pagos dentro del rango de fechas establecidas</strong>
+  </div>
+
+  <!-- Fechas -->
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <div class="card border-secondary">
+        <div class="card-body text-center">
+          <h6 class="card-title fw-bold">Fecha Emisión</h6>
+          <p class="mb-0">24/08/2025</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-secondary">
+        <div class="card-body text-center">
+          <h6 class="card-title fw-bold">Fecha Vencimiento</h6>
+          <p class="mb-0">31/08/2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensaje -->
+  <div class="card border-dark mb-3">
+    <div class="card-header bg-secondary text-white fw-bold">
+      Deuda Total
+    </div>
+    <div class="card-body p-3">
+      <p class="mb-1"><strong>Mensajes al cliente:</strong></p>
+      <p class="mb-1">Deberá enviar foto del voucher a la administración por WhatsApp para su registro y control.</p>
+      <p class="mb-0">Al depositar en ventanilla adicionar los S/ 9.00 de comisión.</p>
+    </div>
+  </div>
+
+  <!-- Contactos -->
+  <div class="card border-info mb-4">
+    <div class="card-body">
+      <p class="fw-bold mb-1">CONTACTOS ADMINISTRACIÓN</p>
+      <p class="mb-1">Cel: 987 654 321</p>
+      <p class="mb-0">Correo: u21301812@utp.edu.pe</p>
+    </div>
+  </div>
+
+  <!-- Imagenes -->
+  <div class="d-flex justify-content-center gap-3">
+    <div class="text-center">
+      <img src="medidor1.jpg" class="img-thumbnail" alt="Medidor anterior" width="150">
+      <p class="small mt-1">Lectura anterior</p>
+    </div>
+    <div class="text-center">
+      <img src="medidor2.jpg" class="img-thumbnail" alt="Medidor actual" width="150">
+      <p class="small mt-1">Lectura actual</p>
+    </div>
+  </div>
+</div>
+</div>
+
 
                     </div>
                     <!-- / Content -->
