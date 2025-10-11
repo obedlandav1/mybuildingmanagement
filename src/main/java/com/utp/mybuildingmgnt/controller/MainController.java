@@ -133,5 +133,9 @@ public class MainController {
         return "layout/receiptpay";
     }
 
+    @GetMapping("/balance")
+    public String balance() {
+        return "layout/balance";
+    }
 
 }
