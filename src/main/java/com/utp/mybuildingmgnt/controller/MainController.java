@@ -86,6 +86,12 @@ public class MainController {
         return "layout/bills";
     }
 
+    @GetMapping("/bills-detaill")
+    public String billsdetaill() {
+        return "layout/bills-detaill";
+    }
+
+
     @GetMapping("/income")
     public String income() {
         return "layout/income";

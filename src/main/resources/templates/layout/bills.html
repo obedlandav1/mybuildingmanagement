@@ -151,7 +151,7 @@
                                                     <i class="bx bx-dots-vertical-rounded"></i>
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                    <a class="dropdown-item" href="javascript:void(0);">Ver
+                                                    <a class="dropdown-item" th:href="@{/budget}">Ver
                                                         detalle</a>
                                                     <!--<a class="dropdown-item"
                                                                     href="javascript:void(0);">Delete</a>-->
@@ -202,7 +202,65 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
+                                                        <a th:href="@{/bills-detaill}" class="dropdown-item"
+                                                            href="javascript:void(0);"><i
+                                                                class="bx bx-edit-alt me-1"></i>
+                                                            Ver recibo</a>
+                                                        <a href="javascript:void(0);" class="dropdown-item"
+                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
+                                                            <i class="bx bx-trash me-1"></i> Descargar
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                <strong>Jeferson Farfán</strong>
+                                            </td>
+                                            <td>5.13%</td>
+                                            <td>202510</td>
+                                            <td>2025-09-28</td>
+                                            <td>2025-10-02</td>
+                                            <td>2025100000002</td>
+                                            <td>S/ 359.87</td>
+                                            <td>
+                                                <div class="dropdown dropstart" data-bs-display="static">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a th:href="@{/bills-detaill}" class="dropdown-item"
+                                                            href="javascript:void(0);"><i
+                                                                class="bx bx-edit-alt me-1"></i>
+                                                            Ver recibo</a>
+                                                        <a href="javascript:void(0);" class="dropdown-item"
+                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
+                                                            <i class="bx bx-trash me-1"></i> Descargar
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
+                                                <strong>Jose Jerí</strong>
+                                            </td>
+                                            <td>3.69%</td>
+                                            <td>202510</td>
+                                            <td>2025-09-28</td>
+                                            <td>2025-10-02</td>
+                                            <td>2025100000003</td>
+                                            <td>S/ 269.42</td>
+                                            <td>
+                                                <div class="dropdown dropstart" data-bs-display="static">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a th:href="@{/bills-detaill}" class="dropdown-item"
                                                             href="javascript:void(0);"><i
                                                                 class="bx bx-edit-alt me-1"></i>
                                                             Ver recibo</a>
@@ -229,16 +287,15 @@
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="modalToggleLabel">Eliminar Edificio</h5>
+                                                <h5 class="modal-title" id="modalToggleLabel">Descargar Recibo</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">¿Desea eliminar el edificio? Esta acción no se puede
-                                                deshacer</div>
+                                            <div class="modal-body">¿Desea descargar el detalle de este recibo?</div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-secondary"
                                                     data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary">Eliminar</button>
+                                                <button type="button" class="btn btn-primary">Descargar</button>
                                             </div>
                                         </div>
                                     </div>
