@@ -138,4 +138,14 @@ public class MainController {
         return "layout/balance";
     }
 
+    @GetMapping("/balance-owner")
+    public String balanceowner() {
+        return "layout/balance-owner";
+    }
+
+    @GetMapping("/expense-matrix")
+    public String expensematrix() {
+        return "layout/expense-matrix";
+    }
+
 }

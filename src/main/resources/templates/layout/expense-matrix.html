@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
+    data-template="vertical-menu-template-free">
+
+<head th:replace="~{fragments/head :: head('Balance Mensual')}"></head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+            <!-- Sidebar -->
+            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+            <!-- / Sidebar -->
+
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <div th:replace="~{fragments/navbar :: navbar}"></div>
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
+                            <h4 class="fw-bold py-0 mb-0">
+                                <span class="text-muted fw-light">Matriz /</span> de Gastos
+                            </h4>
+
+                            <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Elegir Edificio
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Recuay</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Breña</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Edificio Mariano
+                                                Pacheco</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Residencial Mariano
+                                                Cornejo</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">Edificio Alto Huaraz</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Elegir periodo
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 01</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 02</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 03</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 04</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 05</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 06</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 07</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 08</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 09</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 10</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 11</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 12</a></li>
+                                    </ul>
+                                </div>
+                                <a th:href="@{/}">
+                                    <button type="button" class="btn btn-primary">Exportar</button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 mb-4 order-0">
+                            <div class="card">
+                                <div class="d-flex align-items-end row">
+                                    <div class="col-sm-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">Edificio Recuay! 🎉</h5>
+                                            <p class="mb-4">
+                                                El <span class="fw-bold">72%</span> de los propietarios han pagado sus
+                                                recibos.
+                                            </p>
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 text-center text-sm-left">
+                                        <div class="card-body pb-0 px-0 px-md-4">
+                                            <img th:src="@{../assets/img/illustrations/man-with-laptop-light.png}"
+                                                height="140" alt="View Badge User"
+                                                data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                                data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <h4 class="text-center fw-bold mb-1">EDIFICIO RECUAY</h4>
+                            <h6 class="text-center text-secondary mb-4">MATRIZ DE GASTOS</h6>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-sm align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">N°</th>
+                                            <th rowspan="2">PROPIETARIOS / INQUILINOS</th>
+                                            <th colspan="2">DPTO</th>
+                                            <th colspan="2">% PARTIC.</th>
+                                            <th colspan="6">GASTOS COMUNES</th>
+                                            <th rowspan="2">Sub Total</th>
+                                        </tr>
+                                        <tr>
+                                            <th>DPTO</th>
+                                            <th>ESTAC.</th>
+                                            <th>DPTO</th>
+                                            <th>ESTAC.</th>
+                                            <th>MANT. ASCENSOR</th>
+                                            <th>LUZ DEL SUR</th>
+                                            <th>SEDAPAL (Áreas Comunes)</th>
+                                            <th>VIGILANTE</th>
+                                            <th>APORTE JUNTA VECINAL</th>
+                                            <th>Gratificación Sr. Mario</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>101</td>
+                                            <td>-</td>
+                                            <td>3.32%</td>
+                                            <td>-</td>
+                                            <td>8.30</td>
+                                            <td>22.42</td>
+                                            <td>6.30</td>
+                                            <td>46.50</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>148.52</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>102</td>
+                                            <td>-</td>
+                                            <td>8.03%</td>
+                                            <td>-</td>
+                                            <td>20.08</td>
+                                            <td>54.22</td>
+                                            <td>15.24</td>
+                                            <td>112.47</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>267.01</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>201</td>
+                                            <td>6</td>
+                                            <td>6.02%</td>
+                                            <td>0.82%</td>
+                                            <td>15.00</td>
+                                            <td>47.12</td>
+                                            <td>12.99</td>
+                                            <td>95.86</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>236.97</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>202</td>
+                                            <td>5</td>
+                                            <td>6.25%</td>
+                                            <td>0.86%</td>
+                                            <td>17.17</td>
+                                            <td>47.89</td>
+                                            <td>13.49</td>
+                                            <td>97.83</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>241.38</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>301</td>
+                                            <td>4</td>
+                                            <td>5.49%</td>
+                                            <td>0.86%</td>
+                                            <td>15.82</td>
+                                            <td>42.73</td>
+                                            <td>12.05</td>
+                                            <td>83.91</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>219.51</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>302</td>
+                                            <td>-</td>
+                                            <td>5.56%</td>
+                                            <td>-</td>
+                                            <td>13.90</td>
+                                            <td>37.53</td>
+                                            <td>10.55</td>
+                                            <td>78.44</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>205.42</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>401</td>
+                                            <td>7</td>
+                                            <td>5.49%</td>
+                                            <td>0.84%</td>
+                                            <td>15.82</td>
+                                            <td>42.73</td>
+                                            <td>12.05</td>
+                                            <td>83.91</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>219.51</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>402</td>
+                                            <td>-</td>
+                                            <td>5.49%</td>
+                                            <td>-</td>
+                                            <td>13.72</td>
+                                            <td>37.03</td>
+                                            <td>10.41</td>
+                                            <td>76.84</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>202.97</td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>501</td>
+                                            <td>-</td>
+                                            <td>5.49%</td>
+                                            <td>-</td>
+                                            <td>13.72</td>
+                                            <td>37.03</td>
+                                            <td>10.41</td>
+                                            <td>76.84</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>202.97</td>
+                                        </tr>
+                                        <tr>
+                                            <td>10</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>502</td>
+                                            <td>-</td>
+                                            <td>5.49%</td>
+                                            <td>-</td>
+                                            <td>13.72</td>
+                                            <td>37.03</td>
+                                            <td>10.41</td>
+                                            <td>76.84</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>202.97</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>601</td>
+                                            <td>-</td>
+                                            <td>5.49%</td>
+                                            <td>-</td>
+                                            <td>13.72</td>
+                                            <td>37.03</td>
+                                            <td>10.41</td>
+                                            <td>76.84</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>202.97</td>
+                                        </tr>
+                                        <tr>
+                                            <td>12</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>602</td>
+                                            <td>1/2</td>
+                                            <td>5.56%</td>
+                                            <td>1.78%</td>
+                                            <td>18.95</td>
+                                            <td>49.44</td>
+                                            <td>13.93</td>
+                                            <td>92.65</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>239.02</td>
+                                        </tr>
+                                        <tr>
+                                            <td>13</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>701</td>
+                                            <td>3</td>
+                                            <td>10.48%</td>
+                                            <td>0.82%</td>
+                                            <td>28.25</td>
+                                            <td>76.28</td>
+                                            <td>21.44</td>
+                                            <td>158.23</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>349.20</td>
+                                        </tr>
+                                        <tr>
+                                            <td>14</td>
+                                            <td>XXXXXXXXXXXXXXXXXX</td>
+                                            <td>702</td>
+                                            <td>8</td>
+                                            <td>14.95%</td>
+                                            <td>0.84%</td>
+                                            <td>39.47</td>
+                                            <td>106.56</td>
+                                            <td>29.83</td>
+                                            <td>221.00</td>
+                                            <td>15.00</td>
+                                            <td>50.00</td>
+                                            <td>700.31</td>
+                                        </tr>
+
+                                        <!-- Totales -->
+                                        <tr class="fw-bold">
+                                            <td colspan="4" class="text-end">% Total:</td>
+                                            <td colspan="2">100.07%</td>
+                                            <td class="table-warning">250.17</td>
+                                            <td class="table-warning">675.41</td>
+                                            <td class="table-warning">189.83</td>
+                                            <td class="table-warning">1,406.93</td>
+                                            <td class="table-warning">210.00</td>
+                                            <td class="table-warning">700.00</td>
+                                            <td class="table-warning">3,426.35</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Toggle Between Modals -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <!-- Modal 1-->
+                                <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel"
+                                    tabindex="-1" style="display: none" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalToggleLabel">Eliminar Ingreso</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">¿Desea eliminar el Ingreso? Esta acción no se puede
+                                                deshacer</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" data-bs-target="#modalToggle2"
+                                                    data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal 2-->
+                                <div class="modal fade" id="modalToggle2" aria-hidden="true"
+                                    aria-labelledby="modalToggleLabel2" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalToggleLabel2">¡Atención!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">Opción deshabilitada.</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" data-bs-target="#modalToggle"
+                                                    data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                    Cerrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Toggle Between Modals -->
+
+                    </div>
+                    <!-- / Content -->
+
+                    <!-- Footer -->
+                    <div th:replace="~{fragments/footer :: footer}"></div>
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
+    <script th:src="@{/vendor/libs/popper/popper.js}"></script>
+    <script th:src="@{/vendor/js/bootstrap.js}"></script>
+    <script th:src="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+
+    <script th:src="@{/vendor/js/menu.js}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script th:src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
+
+    <!-- Main JS -->
+    <script th:src="@{/js/main-app.js}"></script>
+
+    <!-- Page JS -->
+    <script th:src="@{/js/dashboards-analytics.js}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
+    data-template="vertical-menu-template-free">
+
+<head th:replace="~{fragments/head :: head('Balance Mensual')}"></head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+            <!-- Sidebar -->
+            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+            <!-- / Sidebar -->
+
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <div th:replace="~{fragments/navbar :: navbar}"></div>
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
+                            <h4 class="fw-bold py-0 mb-0">
+                                <span class="text-muted fw-light">Balance /</span> Mensual
+                            </h4>
+
+                            <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary dropdown-toggle"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Elegir periodo
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 01</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 02</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 03</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 04</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 05</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 06</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 07</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 08</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 09</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 10</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 11</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0);">2025 12</a></li>
+                                    </ul>
+                                </div>
+                                <a th:href="@{/budget-create}">
+                                    <button type="button" class="btn btn-primary">Exportar</button>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8 mb-4 order-0">
+                            <div class="card">
+                                <div class="d-flex align-items-end row">
+                                    <div class="col-sm-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-primary">Edificio Recuay! 🎉</h5>
+                                            <p class="mb-4">
+                                                El <span class="fw-bold">72%</span> de los propietarios han pagado sus recibos.
+                                            </p>
+
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 text-center text-sm-left">
+                                        <div class="card-body pb-0 px-0 px-md-4">
+                                            <img th:src="@{../assets/img/illustrations/man-with-laptop-light.png}"
+                                                height="140" alt="View Badge User"
+                                                data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                                data-app-light-img="illustrations/man-with-laptop-light.png" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{../assets/img/icons/unicons/chart-success.png}"
+                                                    alt="chart success" class="rounded" />
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="cardOpt3"
+                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Presupuesto</span>
+                                        <h3 class="card-title mb-2">S/ 12,628</h3>
+                                        <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+                                            +72.80%</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{../assets/img/icons/unicons/chart-success.png}"
+                                                    alt="chart success" class="rounded" />
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="cardOpt3"
+                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Recaudación</span>
+                                        <h3 class="card-title mb-2">S/ 12,628</h3>
+                                        <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+                                            +72.80%</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{../assets/img/icons/unicons/chart-success.png}"
+                                                    alt="chart success" class="rounded" />
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="cardOpt3"
+                                                    data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
+                                                    <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Balance</span>
+                                        <h3 class="card-title mb-2">S/ 12,628</h3>
+                                        <small class="text-success fw-semibold"><i class="bx bx-up-arrow-alt"></i>
+                                            +72.80%</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Toggle Between Modals -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <!-- Modal 1-->
+                                <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel"
+                                    tabindex="-1" style="display: none" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalToggleLabel">Eliminar Ingreso</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">¿Desea eliminar el Ingreso? Esta acción no se puede
+                                                deshacer</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" data-bs-target="#modalToggle2"
+                                                    data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                    Eliminar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal 2-->
+                                <div class="modal fade" id="modalToggle2" aria-hidden="true"
+                                    aria-labelledby="modalToggleLabel2" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalToggleLabel2">¡Atención!</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">Opción deshabilitada.</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" data-bs-target="#modalToggle"
+                                                    data-bs-toggle="modal" data-bs-dismiss="modal">
+                                                    Cerrar
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Toggle Between Modals -->
+
+                    </div>
+                    <!-- / Content -->
+
+                    <!-- Footer -->
+                    <div th:replace="~{fragments/footer :: footer}"></div>
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
+    <script th:src="@{/vendor/libs/popper/popper.js}"></script>
+    <script th:src="@{/vendor/js/bootstrap.js}"></script>
+    <script th:src="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+
+    <script th:src="@{/vendor/js/menu.js}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script th:src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
+
+    <!-- Main JS -->
+    <script th:src="@{/js/main-app.js}"></script>
+
+    <!-- Page JS -->
+    <script th:src="@{/js/dashboards-analytics.js}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>
