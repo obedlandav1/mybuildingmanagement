@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
+    data-template="vertical-menu-template-free">
+
+<head th:replace="~{fragments/head :: head('Recibos')}"></head>
+
+<body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+
+            <!-- Sidebar -->
+            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+            <!-- / Sidebar -->
+
+            <!-- Layout container -->
+            <div class="layout-page">
+                <!-- Navbar -->
+                <div th:replace="~{fragments/navbar-owner :: navbar-owner}"></div>
+                <!-- / Navbar -->
+
+                <!-- Content wrapper -->
+                <div class="content-wrapper">
+
+                    <!-- Content -->
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
+                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Pagar /</span> Recibos
+                            </h4>
+                            <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
+                                <a th:href="@{/budget-create}">
+                                    <button type="button" class="btn btn-danger">Pagar</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{/img/icons/unicons/cc-primary.png}" alt="chart success"
+                                                    class="rounded" />
+                                            </div>
+                                            <div class="dropdown">
+                                                <div class="col-lg-3 col-sm-6 col-12">
+                                                    <!--<small class="text-light fw-semibold">Elija edificio</small>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Edificio</span>
+                                        <h3 class="card-title mb-2">Residencal Recuay</h3>
+                                        <span class="badge bg-label-success rounded-pill">Dpto 101</span>
+                                        <!--<small class="text-success fw-semibold"><i
+                                                            class="bx bx-up-arrow-alt"></i>
+                                                        +72.80%</small>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-4 mb-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div class="avatar flex-shrink-0">
+                                                <img th:src="@{/img/icons/unicons/cc-primary.png}" alt="chart success"
+                                                    class="rounded" />
+                                            </div>
+                                        </div>
+                                        <span class="fw-semibold d-block mb-1">Monto a pagar</span>
+                                        <h3 class="card-title mb-2">S/ 159.87</h3>
+                                        <span class="badge bg-label-warning rounded-pill">Deuda vigente</span>
+                                        <!--<small class="text-success fw-semibold"><i
+                                                            class="bx bx-up-arrow-alt"></i>
+                                                        +72.80%</small>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Basic Bootstrap Table -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card mb-4">
+                                    <h5 class="card-header">Seleccine metodo de pago</h5>
+                                    <div class="card-body">
+                                        <!--<p class="card-text">
+                                            Toggle the visibility of content across your project with a few classes and
+                                            our JavaScript
+                                            plugins.
+                                        </p>-->
+                                        <p class="demo-inline-spacing">
+                                            <a class="btn btn-primary me-1" data-bs-toggle="collapse"
+                                                href="#collapseYape" role="button" aria-expanded="false"
+                                                aria-controls="collapseYape">
+                                                Yape </a>
+                                        </p>
+                                        <p class="demo-inline-spacing">
+                                            <a class="btn btn-primary me-1" data-bs-toggle="collapse"
+                                                href="#collapseBCP" role="button" aria-expanded="false"
+                                                aria-controls="collapseBCP">
+                                                Transf. bancaria </a>
+                                        </p>
+                                        <div class="collapse" id="collapseYape">
+                                            <div class="d-grid d-sm-flex p-3 border">
+                                                <img th:src="@{/img/elements/0.jpg}" alt="collapse-image" height="125"
+                                                    class="me-4 mb-sm-0 mb-2" />
+                                                <span>Codigo QR</span>
+                                            </div>
+                                            <a th:href="@{/budget-create}">
+                                                <button type="button" class="btn btn-danger">Subir comprobante</button>
+                                            </a>
+                                        </div>
+                                        <div class="collapse" id="collapseYape">
+                                            <div class="d-grid d-sm-flex p-3 border">
+                                                <img th:src="@{/img/elements/0.jpg}" alt="collapse-image" height="125"
+                                                    class="me-4 mb-sm-0 mb-2" />
+                                                <span>Numero de transferencia</span>
+                                            </div>
+                                            <a th:href="@{/budget-create}">
+                                                <button type="button" class="btn btn-danger">Subir comprobante</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/ Basic Bootstrap Table -->
+
+                        <!-- Toggle Between Modals -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <!-- Modal 1-->
+                                <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel"
+                                    tabindex="-1" style="display: none" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalToggleLabel">Descargar Recibo</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">¿Desea descargar el detalle de este recibo?</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                    data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary">Descargar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- / Toggle Between Modals -->
+
+                    </div>
+                    <!-- / Content -->
+
+                    <!-- Footer -->
+                    <div th:replace="~{fragments/footer :: footer}"></div>
+                    <!-- / Footer -->
+
+                    <div class="content-backdrop fade"></div>
+                </div>
+                <!-- Content wrapper -->
+            </div>
+            <!-- / Layout page -->
+        </div>
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
+    <script th:src="@{/vendor/libs/popper/popper.js}"></script>
+    <script th:src="@{/vendor/js/bootstrap.js}"></script>
+    <script th:src="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
+
+    <script th:src="@{/vendor/js/menu.js}"></script>
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+    <script th:src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
+
+    <!-- Main JS -->
+    <script th:src="@{/js/main-app.js}"></script>
+
+    <!-- Page JS -->
+    <script th:src="@{/js/dashboards-analytics.js}"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+
+</html>
