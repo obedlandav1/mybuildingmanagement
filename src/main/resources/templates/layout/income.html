@@ -319,6 +319,66 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                entidades: [],
+                entidad: [],
+                nombres: "Dajana"
+            },
+            methods: {
+                listar: function () {
+                    this.$http.get('/api/alumno?nombres=' + this.nombres).then(response => {
+                        this.entidades = response.data;
+                    });
+                },
+                buscar: function () {
+                    this.listar();
+                },
+                nuevo: function () {
+                    this.entidad = {
+                        id: 0,
+                        nombres: "",
+                        apellidos: ""
+                    };
+                    $("#mdlEntidad").modal("show");
+                },
+                editar: function (id) {
+                    this.$http.get('/api/alumno/' + id).then(response => {
+                        this.entidad = response.data;
+                        $("#mdlEntidad").modal("show");
+                    });
+                },
+                guardar: function () {
+                    this.$http.post('/api/alumno', this.entidad).then(response => {
+                        this.listar();
+                        $("#mdlEntidad").modal("hide");
+                    });
+                },
+                actualizar: function () {
+                    this.$http.put('/api/alumno/' + this.entidad.id, this.entidad).then(response => {
+                        this.listar();
+                        $("#mdlEntidad").modal("hide");
+                    });
+                },
+                eliminar: function (id) {
+                    this.entidad.id = id;
+                    $("#mdlEliminar").modal("show");
+                },
+                confimareliminacion: function () {
+                    this.$http.delete('/api/alumno/' + this.entidad.id).then(response => {
+                        this.listar();
+                        $("#mdlEliminar").modal("hide");
+                    });
+                }
+            },
+            mounted: function () {
+                this.listar();
+            }
+        });
+    </script>
 </body>
 
 </html>
