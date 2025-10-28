@@ -23,7 +23,7 @@
                 <div class="content-wrapper">
 
                     <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-xxl flex-grow-1 container-p-y" id="app" v-cloak>
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Crear /</span> Edificio
                             </h4>
@@ -39,45 +39,69 @@
                                     <small class="text-muted float-end">Default label</small>
                                 </div>-->
                                 <div class="card-body">
-                                    <form>
+                                    <form @submit.prevent="guardar">
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-name">Nombre del
-                                                edificio</label>
+                                            <label class="col-sm-2 col-form-label">Nombre</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-name"
-                                                    placeholder="Ingrese nombre de edificio" />
+                                                <input v-model="edificio.nombre_edificio" type="text"
+                                                    class="form-control" placeholder="Ingrese nombre del edificio"
+                                                    required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-company">Dirección
-                                                del edificio</label>
+                                            <label class="col-sm-2 col-form-label">Dirección</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese la dirección completa del edificio" />
+                                                <input v-model="edificio.direccion_edificio" type="text"
+                                                    class="form-control" placeholder="Ingrese dirección completa"
+                                                    required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-email">Número de
-                                                RUC</label>
+                                            <label class="col-sm-2 col-form-label">RUC</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
+                                                <input v-model="edificio.ruc" type="text" class="form-control"
                                                     placeholder="Opcional" />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label"
-                                                for="basic-default-message">Pais</label>
+                                            <label class="col-sm-2 col-form-label">País</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el país del edificio" />
+                                                <input v-model="edificio.pais_edificio" type="text" class="form-control"
+                                                    placeholder="Ingrese el país" required />
                                             </div>
                                         </div>
+
+                                        <!--<div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label">Estado</label>
+                                            <div class="col-sm-10">
+                                                <select v-model="edificio.estado_edificio" class="form-select" required>
+                                                    <option disabled value="">Seleccione un estado</option>
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Suspendido</option>
+                                                    <option value="3">Eliminado</option>
+                                                </select>
+                                            </div>
+                                        </div>-->
+
                                         <div class="row justify-content-end">
                                             <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary">Crear</button>
+                                                <button type="submit" class="btn btn-primary">Guardar</button>
                                             </div>
                                         </div>
                                     </form>
+
+                                    <!-- Mensaje de éxito -->
+                                    <div v-if="mensaje" class="alert alert-success mt-3">
+                                        {{ mensaje }}
+                                    </div>
+
+                                    <!-- Mensaje de error -->
+                                    <div v-if="error" class="alert alert-danger mt-3">
+                                        {{ error }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +124,6 @@
     <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
-
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
@@ -122,6 +145,55 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                edificio: {
+                    nombre_edificio: "",
+                    direccion_edificio: "",
+                    ruc: "",
+                    pais_edificio: "",
+                    estado_edificio: 1
+                },
+                mensaje: null,
+                error: null
+            },
+            methods: {
+                guardar: function () {
+                    this.mensaje = null;
+                    this.error = null;
+                    this.$http.post('/api/edificio', this.edificio)
+                        .then(response => {
+                            this.mensaje = "✅ Edificio creado correctamente.";
+                            this.limpiarFormulario();  
+                            
+                            // Esperar 1.5 segundos y redirigir
+                            setTimeout(() => {
+                                window.location.href = "/building"; // URL de la lista
+                            }, 1500);
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            this.error = "❌ Error al registrar el edificio.";
+                        });
+                },
+                limpiarFormulario: function () {
+                    this.edificio = {
+                        nombre_edificio: "",
+                        direccion_edificio: "",
+                        ruc: "",
+                        pais_edificio: ""
+                    };
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

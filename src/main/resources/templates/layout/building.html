@@ -23,7 +23,7 @@
                 <div class="content-wrapper">
 
                     <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y" id="app">
+                    <div class="container-xxl flex-grow-1 container-p-y" id="app" v-cloak>
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Registro /</span> Edificios
                             </h4>
@@ -53,7 +53,11 @@
                                             <td>{{ e.ruc }}</td>
                                             <td>{{ e.pais_edificio }}</td>
                                             <td>
-                                                <span class="badge bg-label-primary me-1">{{ e.estado_edificio }}</span>
+                                                <!--<span class="badge bg-label-primary me-1">{{ e.estado_edificio }}</span>-->
+                                                <span class="badge me-1"
+                                                    :class="getEstadoInfo(e.estado_edificio).clase">
+                                                    {{ getEstadoInfo(e.estado_edificio).texto }}
+                                                </span>
                                             </td>
                                             <td>
                                                 <div class="dropdown dropstart">
@@ -191,6 +195,18 @@
                         this.error = "Error al cargar los edificios.";
                         this.cargando = false;
                     });
+                },
+                getEstadoInfo: function (codigo) {
+                    switch (codigo) {
+                        case 1:
+                            return { texto: "Activo", clase: "bg-label-success" };
+                        case 2:
+                            return { texto: "Suspendido", clase: "bg-label-warning" };
+                        case 3:
+                            return { texto: "Eliminado", clase: "bg-label-danger" };
+                        default:
+                            return { texto: "Desconocido", clase: "bg-label-secondary" };
+                    }
                 },
                 prepararEliminar: function (id) {
                     this.idedificio = id;
