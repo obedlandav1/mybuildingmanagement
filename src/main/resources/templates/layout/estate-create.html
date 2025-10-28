@@ -88,8 +88,11 @@
                                     <div class="col-sm-10">
                                         <select v-model="inmueble.propietarios_idpropietario" class="form-control"
                                             required>
-                                            <option v-for="propietario in propietarios" :value="propietario.id">
-                                                {{ propietario.nombre }}</option>
+                                            <option value="">-- Seleccione --</option>
+                                            <option v-for="propietario in propietarios" :key="propietario.idpropietario"
+                                                :value="propietario.idpropietario">
+                                                {{ propietario.nombre_pro }} {{ propietario.apellido_pro }}
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -108,7 +111,7 @@
                 </div>
             </div>
 
-           
+
         </div>
     </div>
 
@@ -140,28 +143,46 @@
                     propietarios_idpropietario: null
                 },
                 edificios: [],      // lista que llenas con un GET a /api/edificios
-                propietarios: []    // lista que llenas con un GET a /api/propietarios
+                propietarios: [],    // lista que llenas con un GET a /api/propietarios
+                idEdificioSeleccionado: null
             },
             mounted() {
                 this.obtenerEdificios();
             },
+            watch: {
+                idEdificioSeleccionado(newVal) {
+                    if (newVal) {
+                        this.obtenerPropietarios(newVal);
+                    } else {
+                        this.propietarios = [];
+                    }
+                }
+            },
             methods: {
                 obtenerEdificios() {
-                    this.$http.get('/api').then(res => {
-                        this.edificios = res.body;  // llena la lista de edificios
+                    this.$http.get('/api/edificio').then(res => {
+                        this.edificios = res.body;
                     }).catch(err => {
                         console.error('Error al cargar edificios', err);
                     });
                 },
+                obtenerPropietarios(idEdificio) {
+                    this.$http.get(`/api/propietarios/edificio/${idEdificio}`).then(res => {
+                        this.propietarios = res.body;
+                    }).catch(err => {
+                        console.error('Error al cargar propietarios', err);
+                        this.propietarios = [];
+                    });
+                },
                 guardarInmueble() {
-                    // agrega el id del edificio al payload
                     let payload = {
                         numero_inm: this.inmueble.numero,
                         tipo_inmueble: this.inmueble.tipo,
                         metro_cuadrado: this.inmueble.metrosCuadrados,
                         porcentaje_inm: this.inmueble.participacion,
                         estado_inm: this.inmueble.estado,
-                        edificios_idedificio: this.idEdificioSeleccionado
+                        edificios_idedificio: this.idEdificioSeleccionado,
+                        propietarios_idpropietario: this.inmueble.propietarios_idpropietario
                     };
 
                     this.$http.post('/api/inmuebles', payload).then(res => {
