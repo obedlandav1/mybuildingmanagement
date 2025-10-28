@@ -22,7 +22,7 @@ public class InmuebleController {
 @GetMapping("/edificio/{idEdificio}")
 public ResponseEntity<List<Inmueble>> listarPorEdificio(@PathVariable("idEdificio") Long idEdificio) {
     try {
-        List<Inmueble> lista = repository.findByEdificiosIdedificio(idEdificio);
+        List<Inmueble> lista = repository.findByEdificios_idedificio(idEdificio);
 
         if (lista.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
