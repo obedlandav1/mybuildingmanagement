@@ -33,55 +33,86 @@
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Número de Inmueble</label>
                                             <div class="col-sm-10">
-                                                <input v-model="inmueble.numero" type="text" class="form-control" required>
+                                                <input v-model="inmueble.numero" type="text" class="form-control"
+                                                    required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Tipo de Inmueble</label>
                                             <div class="col-sm-10">
-                                                <input v-model="inmueble.tipo" type="text" class="form-control" required>
+                                                <input v-model="inmueble.tipo" type="text" class="form-control"
+                                                    required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Metros cuadrados</label>
                                             <div class="col-sm-10">
-                                                <input v-model="inmueble.metrosCuadrados" type="number" class="form-control" required>
+                                                <input v-model="inmueble.metrosCuadrados" type="number"
+                                                    class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">% Participación</label>
                                             <div class="col-sm-10">
-                                                <input v-model="inmueble.participacion" type="number" step="0.01" class="form-control" required>
+                                                <input v-model="inmueble.participacion" type="number" step="0.01"
+                                                    class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Estado</label>
                                             <div class="col-sm-10">
-                                                <input v-model="inmueble.estado" type="text" class="form-control" placeholder="Activo / Inactivo" required>
+                                                <input v-model="inmueble.estado" type="text" class="form-control"
+                                                    placeholder="Activo / Inactivo" required>
                                             </div>
                                         </div>
-
-                                        <div class="row justify-content-end">
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label">Edificio</label>
                                             <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-success">Guardar</button>
+                                                <select v-model="idEdificioSeleccionado" class="form-select">
+                                                    <option value="">-- Seleccione --</option>
+                                                    <option v-for="ed in edificios" :key="ed.idedificio"
+                                                        :value="ed.idedificio">
+                                                        {{ ed.nombre_edificio }}
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
-                                    </form>
                                 </div>
+
+                                <div class="row mb-3">
+                                    <label class="col-sm-2 col-form-label">Propietario</label>
+                                    <div class="col-sm-10">
+                                        <select v-model="inmueble.propietarios_idpropietario" class="form-control"
+                                            required>
+                                            <option v-for="propietario in propietarios" :value="propietario.id">
+                                                {{ propietario.nombre }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+
+                                <div class="row justify-content-end">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-success">Guardar</button>
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                         </div>
                     </div>
+                    <div th:replace="~{fragments/footer :: footer}"></div>
                 </div>
-
-                <div th:replace="~{fragments/footer :: footer}"></div>
             </div>
-        </div>
 
-        <div class="layout-overlay layout-menu-toggle"></div>
+           
+        </div>
+    </div>
+
+    <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
     <!-- Core JS -->
@@ -104,12 +135,36 @@
                     tipo: '',
                     metrosCuadrados: '',
                     participacion: '',
-                    estado: ''
-                }
+                    estado: '',
+                    edificios_idedificio: null,
+                    propietarios_idpropietario: null
+                },
+                edificios: [],      // lista que llenas con un GET a /api/edificios
+                propietarios: []    // lista que llenas con un GET a /api/propietarios
+            },
+            mounted() {
+                this.obtenerEdificios();
             },
             methods: {
-                guardarInmueble: function () {
-                    this.$http.post('/api/inmuebles', this.inmueble).then(res => {
+                obtenerEdificios() {
+                    this.$http.get('/api').then(res => {
+                        this.edificios = res.body;  // llena la lista de edificios
+                    }).catch(err => {
+                        console.error('Error al cargar edificios', err);
+                    });
+                },
+                guardarInmueble() {
+                    // agrega el id del edificio al payload
+                    let payload = {
+                        numero_inm: this.inmueble.numero,
+                        tipo_inmueble: this.inmueble.tipo,
+                        metro_cuadrado: this.inmueble.metrosCuadrados,
+                        porcentaje_inm: this.inmueble.participacion,
+                        estado_inm: this.inmueble.estado,
+                        edificios_idedificio: this.idEdificioSeleccionado
+                    };
+
+                    this.$http.post('/api/inmuebles', payload).then(res => {
                         alert('Inmueble registrado correctamente');
                         window.location.href = '/estate';
                     }).catch(err => {

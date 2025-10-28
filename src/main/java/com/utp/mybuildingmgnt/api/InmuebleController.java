@@ -6,6 +6,8 @@ import com.utp.mybuildingmgnt.repositories.InmuebleRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,24 +17,20 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api")
 public class InmuebleController {
-   @Autowired
+    @Autowired
     private InmuebleRepository repository;
 
-   //  listar inmuebles por edificio
-@GetMapping("/edificio/{idEdificio}")
-public ResponseEntity<List<Inmueble>> listarPorEdificio(@PathVariable("idEdificio") Long idEdificio) {
-    try {
-        List<Inmueble> lista = repository.findByEdificios_idedificio(idEdificio);
-
-        if (lista.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(lista, HttpStatus.OK);
-    } catch (Exception e) {
-        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    // listar inmuebles por edificio
+    @GetMapping("/inmuebles/edificio/{idEdificio}")
+    public List<Inmueble> listarPorEdificio(@PathVariable Long idEdificio) {
+        // Filtra los inmuebles que tengan edificios_idedificio igual al recibido
+        return repository.findAll()
+                .stream()
+                .filter(inmueble -> inmueble.getEdificios_idedificio() == idEdificio)
+                .collect(Collectors.toList());
     }
-}
-//  crear un nuevo inmueble
+
+    // crear un nuevo inmueble
     @PostMapping
     public ResponseEntity<Inmueble> crear(@RequestBody Inmueble entidad) {
         try {
@@ -44,8 +42,7 @@ public ResponseEntity<List<Inmueble>> listarPorEdificio(@PathVariable("idEdifici
                     entidad.getTipo_inmueble(),
                     entidad.getMetro_cuadrado(),
                     entidad.getEdificios_idedificio(),
-                    entidad.getPropietarios_idpropietario()
-            ));
+                    entidad.getPropietarios_idpropietario()));
             return new ResponseEntity<>(nuevo, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -82,6 +79,5 @@ public ResponseEntity<List<Inmueble>> listarPorEdificio(@PathVariable("idEdifici
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
 
 }

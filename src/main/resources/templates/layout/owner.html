@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default">
+<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-template="vertical-menu-template-free">
 
 <head th:replace="~{fragments/head :: head('Propietarios')}"></head>
 
 <body>
-    <div class="layout-wrapper layout-content-navbar" id="app" v-cloak>
+    <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
 
             <!-- Sidebar -->
             <div th:replace="~{fragments/sidebar :: sidebar}"></div>
 
+            <!-- Layout page -->
             <div class="layout-page">
+
                 <!-- Navbar -->
                 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-                <div class="content-wrapper">
+                <div class="content-wrapper" id="app" v-cloak>
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
@@ -29,10 +32,9 @@
 
                                 <select v-model="idEdificioSeleccionado" class="form-select">
                                     <option value="">Elegir Edificio</option>
-                                    <option v-for="edificio in edificios" :key="edificio.idedificio"
-                                        :value="edificio.idedificio">
-                                        {{ edificio.nombre }}
-                                    </option>
+                                    <option v-for="ed in edificios" :key="ed.idedificio" :value="ed.idedificio">
+                                                {{ ed.nombre_edificio }}
+                                            </option>
                                 </select>
 
                                 <button class="btn btn-success" @click="cargarPropietarios">Filtrar</button>

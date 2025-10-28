@@ -22,16 +22,19 @@ public class PropietarioController {
       // Listar por edificio
 
    // listar propietario por edificio
-    @GetMapping("/por-edificio/{idEdificio}")
-    public ResponseEntity<List<Propietario>> listarPorEdificio(@PathVariable Long idEdificio) {
+     @GetMapping("propietarios/edificio/{id}")
+    public ResponseEntity<?> getPropietariosPorEdificio(@PathVariable Long id) {
         try {
-            List<Propietario> lista = repository.findByEdificio(idEdificio);
-            if (lista.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            List<Propietario> propietarios = repository.findPropietariosByEdificio(id);
+            if (propietarios.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("No se encontraron propietarios para este edificio");
             }
-            return new ResponseEntity<>(lista, HttpStatus.OK);
+            return ResponseEntity.ok(propietarios);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            // Manejo de errores
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error al obtener los propietarios: " + e.getMessage());
         }
     }
      // Crear propietario

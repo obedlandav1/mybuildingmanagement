@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InmuebleRepository extends JpaRepository<Inmueble, Long> {
 
-    List<Inmueble> findByEdificios_idedificio(Long idedificio);
+   
 
 }

@@ -10,11 +10,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PropietarioRepository extends JpaRepository<Propietario, Long> {
-    
-     // Listar propietarios por ID de edificio (vinculados mediante inmuebles)
-    @Query("SELECT DISTINCT p FROM Propietario p " +
-           "JOIN Inmueble i ON p.idpropietario = i.propietarios_idpropietario " +
-           "WHERE i.edificios_idedificio = :idEdificio")
-    List<Propietario> findByEdificio(@Param("idEdificio") Long idEdificio);
+
+       @Query("SELECT DISTINCT p FROM Propietario p JOIN Inmueble i ON i.propietarios_idpropietario = p.idpropietario WHERE i.edificios_idedificio = :idEdificio")
+       List<Propietario> findPropietariosByEdificio(@Param("idEdificio") Long idEdificio);
 
 }
