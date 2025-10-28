@@ -1,29 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
-    data-template="vertical-menu-template-free">
+<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default">
 
 <head th:replace="~{fragments/head :: head('Editar Propietario')}"></head>
 
 <body>
-    <!-- Layout wrapper -->
-    <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-wrapper layout-content-navbar" id="app" v-cloak>
         <div class="layout-container">
 
             <!-- Sidebar -->
             <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-            <!-- / Sidebar -->
 
-            <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
                 <div th:replace="~{fragments/navbar :: navbar}"></div>
-                <!-- / Navbar -->
 
-                <!-- Content wrapper -->
                 <div class="content-wrapper">
-
-                    <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
+
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Editar /</span> Propietario
                             </h4>
@@ -31,66 +24,62 @@
                                 <button type="button" class="btn btn-primary">Regresar</button>
                             </a>
                         </div>
-                        <!-- Basic Layout -->
+
                         <div class="col-xxl">
                             <div class="card mb-4">
-                                <!--<div class="card-header d-flex align-items-center justify-content-between">
-                                    <h5 class="mb-0">Basic Layout</h5>
-                                    <small class="text-muted float-end">Default label</small>
-                                </div>-->
                                 <div class="card-body">
-                                    <form>
+                                    <form @submit.prevent="actualizarPropietario">
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-name">
-                                                DNI</label>
+                                            <label class="col-sm-2 col-form-label">DNI</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-name"
-                                                    placeholder="Ingrese el número de DNI del propietario" />
+                                                <input type="text" class="form-control" v-model="propietario.dni_pro"
+                                                    required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-company">
-                                                Nombre</label>
+                                            <label class="col-sm-2 col-form-label">Nombre</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el primer nombre del propietario" />
+                                                <input type="text" class="form-control" v-model="propietario.nombre_pro"
+                                                    required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label" for="basic-default-email">
-                                                Apellido</label>
+                                            <label class="col-sm-2 col-form-label">Apellido</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el primer apellido del propietario" />
+                                                <input type="text" class="form-control"
+                                                    v-model="propietario.apellido_pro" required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label"
-                                                for="basic-default-message">
-                                                Num Inmueble</label>
+                                            <label class="col-sm-2 col-form-label">Teléfono</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el número de inmueble del propietario" />
+                                                <input type="number" class="form-control"
+                                                    v-model="propietario.telefono_pro" required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label"
-                                                for="basic-default-message">
-                                                Teléfono</label>
+                                            <label class="col-sm-2 col-form-label">Correo</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el número de teléfono del propietario" />
+                                                <input type="email" class="form-control"
+                                                    v-model="propietario.correo_pro" required />
                                             </div>
                                         </div>
+
                                         <div class="row mb-3">
-                                            <label class="col-sm-2 col-form-label"
-                                                for="basic-default-message">
-                                                Estado</label>
+                                            <label class="col-sm-2 col-form-label">Estado</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" id="basic-default-company"
-                                                    placeholder="Ingrese el estado del propietario" />
+                                                <select class="form-select" v-model="propietario.estado_pro" required>
+                                                    <option value="">Seleccione</option>
+                                                    <option value="Activo">Activo</option>
+                                                    <option value="Inactivo">Inactivo</option>
+                                                </select>
                                             </div>
                                         </div>
+
                                         <div class="row justify-content-end">
                                             <div class="col-sm-10">
                                                 <button type="submit" class="btn btn-primary">Actualizar</button>
@@ -100,47 +89,75 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-                <!-- / Content -->
 
-                <!-- Footer -->
                 <div th:replace="~{fragments/footer :: footer}"></div>
-                <!-- / Footer -->
-
-                <div class="content-backdrop fade"></div>
             </div>
-            <!-- Content wrapper -->
         </div>
-        <!-- / Layout page -->
-    </div>
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
+        <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-
 
     <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
-    <script th:src="@{/vendor/libs/popper/popper.js}"></script>
     <script th:src="@{/vendor/js/bootstrap.js}"></script>
-    <script th:src="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
-
     <script th:src="@{/vendor/js/menu.js}"></script>
-    <!-- endbuild -->
 
-    <!-- Vendors JS -->
-    <script th:src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
+    <!-- Vue 2 + vue-resource -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
-    <!-- Main JS -->
-    <script th:src="@{/js/main-app.js}"></script>
-
-    <!-- Page JS -->
-    <script th:src="@{/js/dashboards-analytics.js}"></script>
-
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                propietario: {
+                    dni_pro: '',
+                    nombre_pro: '',
+                    apellido_pro: '',
+                    telefono_pro: '',
+                    correo_pro: '',
+                    estado_pro: ''
+                },
+                id: null
+            },
+            mounted() {
+                const params = new URLSearchParams(window.location.search);
+                this.id = params.get('id');
+                if (!this.id) {
+                    alert('No se encontró el ID del propietario');
+                    window.location.href = '/owner';
+                } else {
+                    this.cargarPropietario();
+                }
+            },
+            methods: {
+                cargarPropietario() {
+                    this.$http.get(`/api/propietario/${this.id}`)
+                        .then(response => {
+                            this.propietario = response.body;
+                        })
+                        .catch(error => {
+                            console.error('Error al cargar propietario:', error);
+                            alert('Ocurrió un error al cargar el propietario');
+                        });
+                },
+                actualizarPropietario() {
+                    this.$http.put(`/api/propietario/editar/${this.id}`, this.propietario)
+                        .then(response => {
+                            alert('Propietario actualizado correctamente');
+                            window.location.href = '/owner';
+                        })
+                        .catch(error => {
+                            console.error('Error al actualizar propietario:', error);
+                            alert('Ocurrió un error al actualizar el propietario');
+                        });
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

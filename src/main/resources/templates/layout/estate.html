@@ -1,286 +1,197 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path=""
+<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
     data-template="vertical-menu-template-free">
 
-<head th:replace="~{fragments/head :: head('Edificios')}"></head>
+<head th:replace="~{fragments/head :: head('Inmuebles')}"></head>
 
 <body>
-    <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
 
             <!-- Sidebar -->
             <div th:replace="~{fragments/sidebar :: sidebar}"></div>
-            <!-- / Sidebar -->
 
-            <!-- Layout container -->
+            <!-- Layout page -->
             <div class="layout-page">
+
                 <!-- Navbar -->
                 <div th:replace="~{fragments/navbar :: navbar}"></div>
-                <!-- / Navbar -->
 
                 <!-- Content wrapper -->
-                <div class="content-wrapper">
-
-                    <!-- Content -->
+                <div class="content-wrapper" id="app" v-cloak>
                     <div class="container-xxl flex-grow-1 container-p-y">
-                        <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
-    <h4 class="fw-bold py-0 mb-0">
-        <span class="text-muted fw-light">Registro /</span> Inmuebles
-    </h4>
 
-    <div class="d-flex gap-2"> <!-- Agrupamos los botones -->
-        <a th:href="@{/estate-create}">
-            <button type="button" class="btn btn-primary">Crear</button>
-        </a>
-
-        <div class="btn-group">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Elegir Edificio
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="javascript:void(0);">Residencial Recuay</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0);">Residencial Breña</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0);">Edificio Mariano Pacheco</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0);">Residencial Mariano Cornejo</a></li>
-                <li><a class="dropdown-item" href="javascript:void(0);">Edificio Alto Huaraz</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-                        <!-- Basic Bootstrap Table -->
-                        <div class="card">
-                            <h5 class="card-header">Nombre Edificio</h5>
-                            <div class="table-responsive text-nowrap">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Numero Inmueble</th>
-                                            <th>Tipo de Inmueble</th>
-                                            <th>%Participación</th>
-                                            <th>Estado</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-border-bottom-0">
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>01124</strong>
-                                            </td>
-                                            <td>Departamento</td>
-                                            <td>03%</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/estate-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>01125</strong>
-                                            </td>
-                                            <td>Departamento</td>
-                                            <td>08%</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/estate-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                       <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> 
-                                                <strong>01126</strong></td>
-                                            <td>Estacionamiento</td>
-                                            <td>02%</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/estate-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>01127</strong>
-                                            </td>
-                                            <td>Departamento</td>
-                                            <td>07%</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/estate-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                       <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> 
-                                                <strong>01051</strong></td>
-                                            <td>Bodega</td>
-                                            <td>03%</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/estate-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Gestión /</span> Inmuebles
+                            </h4>
+                            <a th:href="@{/estate-create}">
+                                <button type="button" class="btn btn-primary">+ Crear Inmueble</button>
+                            </a>
                         </div>
-                        <!--/ Basic Bootstrap Table -->
 
-                        <!-- Toggle Between Modals -->
-                        <div class="col-lg-4 col-md-6">
-                            <div class="mt-3">
-                                <!-- Modal 1-->
-                                <div class="modal fade" id="modalToggle" aria-labelledby="modalToggleLabel"
-                                    tabindex="-1" style="display: none" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalToggleLabel">Eliminar Edificio</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">¿Desea eliminar el inmueble? Esta acción no se puede
-                                                deshacer</div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-target="#modalToggle2"
-                                                    data-bs-toggle="modal" data-bs-dismiss="modal">
-                                                    Eliminar
-                                                </button>
-                                            </div>
-                                        </div>
+                        <!-- Filtro por edificio -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Seleccione un Edificio</label>
+                                        <select v-model="idEdificioSeleccionado" class="form-select">
+                                            <option value="">-- Seleccione --</option>
+                                            <option v-for="ed in edificios" :key="ed.idedificio" :value="ed.idedificio">
+                                                {{ ed.nombre_edificio }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-end">
+                                        <button class="btn btn-success w-100" @click="listarInmuebles">Filtrar</button>
                                     </div>
                                 </div>
-                                <!-- Modal 2-->
-                                <div class="modal fade" id="modalToggle2" aria-hidden="true"
-                                    aria-labelledby="modalToggleLabel2" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalToggleLabel2">¡Atención!</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">Opción deshabilitada.</div>
-                                            <div class="modal-footer">
-                                                <button class="btn btn-primary" data-bs-target="#modalToggle"
-                                                    data-bs-toggle="modal" data-bs-dismiss="modal">
-                                                    Cerrar
-                                                </button>
-                                            </div>
-                                        </div>
+
+                                <!-- Cargando -->
+                                <div v-if="cargando" class="text-center py-4">
+                                    <div class="spinner-border text-primary" role="status"></div>
+                                    <p class="mt-2 text-muted">Cargando inmuebles...</p>
+                                </div>
+
+                                <!-- No hay datos -->
+                                <div v-if="!cargando && inmuebles.length === 0 && idEdificioSeleccionado"
+                                    class="alert alert-warning">
+                                    No existen inmuebles registrados para este edificio.
+                                </div>
+
+                                <!-- Tabla -->
+                                <div v-if="inmuebles.length > 0" class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Número</th>
+                                                <th>Tipo</th>
+                                                <th>Metros m2</th>
+                                                <th>% Participación</th>
+                                                <th>Estado</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="(inm, index) in inmuebles" :key="inm.idinmueble">
+                                                <td>{{ inm.numero_inm }}</td>
+                                                <td>{{ inm.tipo_inmueble }}</td>
+                                                <td>{{ inm.metro_cuadrado }}</td>
+                                                <td>{{ inm.porcentaje_inm }}%</td>
+                                                <td><span class="badge bg-label-primary">{{ inm.estado_inm }}</span>
+                                                </td>
+                                                <td>
+                                                    <a :href="'/estate-edit?id=' + inm.idinmueble"
+                                                        class="btn btn-sm btn-primary me-2">
+                                                        <i class="bx bx-edit-alt"></i>
+                                                    </a>
+                                                    <button class="btn btn-sm btn-danger"
+                                                        @click="prepararEliminar(inm.idinmueble)">
+                                                        <i class="bx bx-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Modal Eliminar -->
+                        <div class="modal fade" id="modalEliminar" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Eliminar Inmueble</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        ¿Está seguro que desea eliminar este inmueble? Esta acción no se puede deshacer.
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-bs-dismiss="modal">Cancelar</button>
+                                        <button type="button" class="btn btn-primary"
+                                            @click="confirmarEliminar">Eliminar</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- / Toggle Between Modals -->
 
                     </div>
-                    <!-- / Content -->
 
                     <!-- Footer -->
                     <div th:replace="~{fragments/footer :: footer}"></div>
-                    <!-- / Footer -->
 
-                    <div class="content-backdrop fade"></div>
                 </div>
-                <!-- Content wrapper -->
             </div>
-            <!-- / Layout page -->
         </div>
-
-        <!-- Overlay -->
-        <div class="layout-overlay layout-menu-toggle"></div>
     </div>
 
     <!-- Core JS -->
-    <!-- build:js assets/vendor/js/core.js -->
     <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
-    <script th:src="@{/vendor/libs/popper/popper.js}"></script>
     <script th:src="@{/vendor/js/bootstrap.js}"></script>
-    <script th:src="@{/vendor/libs/perfect-scrollbar/perfect-scrollbar.js}"></script>
-
     <script th:src="@{/vendor/js/menu.js}"></script>
-    <!-- endbuild -->
-
-    <!-- Vendors JS -->
-    <script th:src="@{/vendor/libs/apex-charts/apexcharts.js}"></script>
-
-    <!-- Main JS -->
     <script th:src="@{/js/main-app.js}"></script>
 
-    <!-- Page JS -->
-    <script th:src="@{/js/dashboards-analytics.js}"></script>
+    <!-- Vue 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
-    <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                edificios: [],
+                inmuebles: [],
+                idEdificioSeleccionado: '',
+                idInmuebleEliminar: null,
+                cargando: false
+            },
+            methods: {
+                listarEdificios() {
+                    this.$http.get('/api/edificio').then(response => {
+                        this.edificios = response.body;
+                    }).catch(err => {
+                        console.error(err);
+                    });
+                },
+                listarInmuebles() {
+                    if (!this.idEdificioSeleccionado) {
+                        alert('Seleccione un edificio primero');
+                        return;
+                    }
+                    this.cargando = true;
+                    this.$http.get(`/api/edificio/${this.idEdificioSeleccionado}`).then(response => {
+                        this.inmuebles = response.body;
+                        this.cargando = false;
+                    }).catch(err => {
+                        console.error(err);
+                        alert('Error al cargar inmuebles');
+                        this.cargando = false;
+                    });
+                },
+                prepararEliminar(id) {
+                    this.idInmuebleEliminar = id;
+                    $("#modalEliminar").modal("show");
+                },
+                confirmarEliminar() {
+                    this.$http.delete(`/api/${this.idInmuebleEliminar}`).then(() => {
+                        this.listarInmuebles();
+                        $("#modalEliminar").modal("hide");
+                    }).catch(err => {
+                        console.error(err);
+                        alert('Error al eliminar inmueble');
+                    });
+                }
+            },
+            mounted() {
+                this.listarEdificios();
+            }
+        });
+    </script>
 </body>
 
 </html>
