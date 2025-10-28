@@ -23,7 +23,7 @@
                 <div class="content-wrapper">
 
                     <!-- Content -->
-                    <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="container-xxl flex-grow-1 container-p-y" id="app">
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Registro /</span> Edificios
                             </h4>
@@ -33,166 +33,49 @@
                         </div>
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
-                            <h5 class="card-header">Edificios gestionados</h5>
+                            <h5 class="card-header">Registro</h5>
                             <div class="table-responsive text-nowrap">
                                 <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Dirección</th>
+                                            <th>Ruc</th>
                                             <th>Pais</th>
                                             <th>Estado</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Residencial Recuay</strong>
-                                            </td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
+                                        <tr v-for="e in edificios" :key="e.idedificio">
+                                            <td><strong>{{ e.nombre_edificio }}</strong></td>
+                                            <td>{{ e.direccion_edificio }}</td>
+                                            <td>{{ e.ruc }}</td>
+                                            <td>{{ e.pais_edificio }}</td>
                                             <td>
-                                                <div class="dropdown dropstart" data-bs-display="static">
+                                                <span class="badge bg-label-primary me-1">{{ e.estado_edificio }}</span>
+                                            </td>
+                                            <td>
+                                                <div class="dropdown dropstart">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                         data-bs-toggle="dropdown">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-show me-1"></i>
-                                                            Inmuebles</a>
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-                                                            Propietarios</a>
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
+                                                        <a :href="'/building/' + e.idedificio + '/inmuebles'"
+                                                            class="dropdown-item">
+                                                            <i class="bx bx-show me-1"></i> Inmuebles
                                                         </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Residencial Breña</strong>
-                                            </td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown dropstart" data-bs-display="static">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-show me-1"></i>
-                                                            Inmuebles</a>
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-                                                            Propietarios</a>
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
+                                                        <a :href="'/building/' + e.idedificio + '/propietarios'"
+                                                            class="dropdown-item">
+                                                            <i class="bx bx-user me-1"></i> Propietarios
                                                         </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Edificio
-                                                    Mariano Pacheco</strong></td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown dropstart" data-bs-display="static">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-show me-1"></i>
-                                                            Inmuebles</a>
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-                                                            Propietarios</a>
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
+                                                        <a :href="'/building-edit/' + e.idedificio"
+                                                            class="dropdown-item">
+                                                            <i class="bx bx-edit-alt me-1"></i> Editar
                                                         </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                                <strong>Residencial Mariano Cornejo</strong>
-                                            </td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown dropstart" data-bs-display="static">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-show me-1"></i>
-                                                            Inmuebles</a>
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-                                                            Propietarios</a>
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
                                                         <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
-                                                            <i class="bx bx-trash me-1"></i> Eliminar
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Edificio
-                                                    Alto Huaraz</strong></td>
-                                            <td>Calle ramiro priale N° 200, ATE</td>
-                                            <td>Perú</td>
-                                            <td><span class="badge bg-label-primary me-1">Activo</span></td>
-                                            <td>
-                                                <div class="dropdown dropstart" data-bs-display="static">
-                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                        data-bs-toggle="dropdown">
-                                                        <i class="bx bx-dots-vertical-rounded"></i>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-show me-1"></i>
-                                                            Inmuebles</a>
-                                                        <a th:href="@{/}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i class="bx bx-user me-1"></i>
-                                                            Propietarios</a>
-                                                        <a th:href="@{/building-edit}" class="dropdown-item"
-                                                            href="javascript:void(0);"><i
-                                                                class="bx bx-edit-alt me-1"></i> Editar</a>
-                                                        <a href="javascript:void(0);" class="dropdown-item"
-                                                            data-bs-toggle="modal" data-bs-target="#modalToggle">
+                                                            @click="prepararEliminar(e.idedificio)">
                                                             <i class="bx bx-trash me-1"></i> Eliminar
                                                         </a>
                                                     </div>
@@ -204,6 +87,17 @@
                             </div>
                         </div>
                         <!--/ Basic Bootstrap Table -->
+
+                        <!-- Cargando -->
+                        <div v-if="cargando" class="text-center py-5">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p class="mt-2 text-muted">Cargando edificios...</p>
+                        </div>
+
+                        <!-- No hay datos -->
+                        <div v-if="!cargando && edificios.length === 0" class="alert alert-danger w-100" role="alert">
+                            No existen datos que mostrar
+                        </div>
 
                         <!-- Toggle Between Modals -->
                         <div class="col-lg-4 col-md-6">
@@ -223,7 +117,8 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-secondary"
                                                     data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary">Eliminar</button>
+                                                <button type="button" @click="confirmarEliminar"
+                                                    class="btn btn-primary">Eliminar</button>
                                             </div>
                                         </div>
                                     </div>
@@ -271,6 +166,54 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                edificios: [],
+                cargando: false,
+                error: null,
+                idedificio: null
+            },
+            methods: {
+                listar: function () {
+                    this.cargando = true;
+                    this.$http.get('/api/edificio').then(response => {
+                        this.edificios = response.body;
+                        this.cargando = false;
+                    }).catch(err => {
+                        console.error(err);
+                        this.error = "Error al cargar los edificios.";
+                        this.cargando = false;
+                    });
+                },
+                prepararEliminar: function (id) {
+                    this.idedificio = id;
+                    $("#modalToggle").modal("show");
+                },
+                confirmarEliminar: function () {
+                    this.$http.delete(`/api/edificio/${this.idedificio}`)
+                        .then(() => {
+                            this.listar();
+                            $("#modalToggle").modal("hide");
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert("Error al eliminar el edificio.");
+                        });
+                }
+            },
+            mounted: function () {
+                this.listar();
+            }
+        });
+    </script>
+
 </body>
 
 </html>

@@ -27,6 +27,9 @@ public class Ingreso implements Serializable {
     @Column(name = "fecha_ingreso")
     private String fecha_ingreso;
 
+    @Column(name = "tipo_ingreso")
+    private String tipo_ingreso;
+
     @Column(name = "monto_pagado")
     private double monto_pagado;
 
