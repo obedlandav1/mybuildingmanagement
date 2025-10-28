@@ -39,4 +39,10 @@ public class Ingreso implements Serializable {
     @Column(name = "recibos_idrecibo")
     private int recibos_idrecibo;
 
+    @Column(name = "periodos_idperiodo")
+    private int periodos_idperiodo;
+
+    @Column(name = "edificios_idedificio")
+    private int edificios_idedificio;
+
 }

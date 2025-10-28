@@ -25,7 +25,7 @@ public class IngresoController {
         try {
             List<Ingreso> lista = new ArrayList<Ingreso>();
 
-            repository.findByAnioBuilding(idperiodo, idedificio).forEach(lista::add);
+            repository.findByPeriodoAndEdificio(idperiodo, idedificio).forEach(lista::add);
 
             if (lista.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -44,7 +44,9 @@ public class IngresoController {
                     entidad.getMonto_pagado(),
                     entidad.getMetodo_ingreso(),
                     entidad.getComprobante_ingreso(),
-                    entidad.getRecibos_idrecibo()
+                    entidad.getRecibos_idrecibo(),
+                    entidad.getPeriodos_idperiodo(),
+                    entidad.getEdificios_idedificio()
             ));
             return new ResponseEntity<>(_entidad, HttpStatus.CREATED);
         } catch (Exception e) {
