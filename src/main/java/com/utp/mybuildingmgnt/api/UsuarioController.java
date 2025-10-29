@@ -1,7 +1,10 @@
 package com.utp.mybuildingmgnt.api;
 
+import com.utp.mybuildingmgnt.models.Edificio;
 import com.utp.mybuildingmgnt.models.Usuario;
 import com.utp.mybuildingmgnt.repositories.UsuarioRepository;
+import com.utp.mybuildingmgnt.utils.PasswordUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +20,7 @@ public class UsuarioController {
 
     @Autowired
     UsuarioRepository repository;
+    PasswordUtils password;
 
     @GetMapping("/usuarios")
     public ResponseEntity<List<Usuario>> getAll(@RequestParam(required = false) String title) {
@@ -35,10 +39,21 @@ public class UsuarioController {
     @GetMapping("/usuario/{dni}")
     public ResponseEntity<Usuario> getByDni(@PathVariable("dni") Long dni) {
         Optional<Usuario> entidad = repository.findByDni_usuario(dni);
+        try {
         if (entidad.isPresent()) {
-            return new ResponseEntity<>(entidad.get(), HttpStatus.OK);
+            Usuario user = entidad.get();
+            String inputpass = password.hash(dni.toString());
+
+            if (PasswordUtils.matches(inputpass, user.getClave())) {
+                return null;
+            }
+
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+                } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

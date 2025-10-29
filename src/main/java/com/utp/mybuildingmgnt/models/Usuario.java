@@ -37,6 +37,6 @@ public class Usuario implements Serializable {
     private String dni_usuario;
 
     @Column(name = "clave")
-    private long clave;
+    private String clave;
 
 }
