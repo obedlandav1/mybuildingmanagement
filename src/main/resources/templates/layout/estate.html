@@ -21,81 +21,79 @@
                 <div class="content-wrapper" id="app" v-cloak>
                     <div class="container-xxl flex-grow-1 container-p-y">
 
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Gestión /</span> Inmuebles
-                            </h4>
-                            <a th:href="@{/estate-create}">
-                                <button type="button" class="btn btn-primary">Crear Inmueble</button>
-                            </a>
+                        <!-- Filtro y botón en la misma fila -->
+                        <div class="row mb-4 align-items-end">
+                            <!-- Filtro de Edificio -->
+                            <div class="col-md-6">
+                                <label class="form-label">Seleccione un Edificio</label>
+                                <select v-model="idEdificioSeleccionado" class="form-select">
+                                    <option value="">-- Seleccione --</option>
+                                    <option v-for="ed in edificios" :key="ed.idedificio" :value="ed.idedificio">
+                                        {{ ed.nombre_edificio }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <!-- Botón Crear Inmueble -->
+                            <div class="col-md-6 text-end">
+                                <a th:href="@{/estate-create}">
+                                    <button type="button" class="btn btn-primary">Crear Inmueble</button>
+                                </a>
+                            </div>
                         </div>
 
-                        <!-- Filtro por edificio -->
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label">Seleccione un Edificio</label>
-                                        <select v-model="idEdificioSeleccionado" class="form-select">
-                                            <option value="">-- Seleccione --</option>
-                                            <option v-for="ed in edificios" :key="ed.idedificio" :value="ed.idedificio">
-                                                {{ ed.nombre_edificio }}
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2 d-flex align-items-end">
-                                        <button class="btn btn-success w-100" @click="listarInmuebles">Filtrar</button>
-                                    </div>
-                                </div>
-
-                                <!-- Cargando -->
-                                <div v-if="cargando" class="text-center py-4">
-                                    <div class="spinner-border text-primary" role="status"></div>
-                                    <p class="mt-2 text-muted">Cargando inmuebles...</p>
-                                </div>
-
-                                <!-- No hay datos -->
-                                <div v-if="!cargando && inmuebles.length === 0 && idEdificioSeleccionado"
-                                    class="alert alert-warning">
-                                    No existen inmuebles registrados para este edificio.
-                                </div>
-
-                                <!-- Tabla -->
-                                <div v-if="inmuebles.length > 0" class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Número</th>
-                                                <th>Tipo</th>
-                                                <th>Metros m2</th>
-                                                <th>% Participación</th>
-                                                <th>Estado</th>
-                                                <th>Acciones</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="(inm, index) in inmuebles" :key="inm.idinmueble">
-                                                <td>{{ inm.numero_inm }}</td>
-                                                <td>{{ inm.tipo_inmueble }}</td>
-                                                <td>{{ inm.metro_cuadrado }}</td>
-                                                <td>{{ inm.porcentaje_inm }}%</td>
-                                                <td><span class="badge bg-label-primary">{{ inm.estado_inm }}</span>
-                                                </td>
-                                                <td>
-                                                    <a :href="'/estate-edit?id=' + inm.idinmueble"
-                                                        class="btn btn-sm btn-primary me-2">
-                                                        <i class="bx bx-edit-alt"></i>
-                                                    </a>
-                                                    <button class="btn btn-sm btn-danger"
-                                                        @click="prepararEliminar(inm.idinmueble)">
-                                                        <i class="bx bx-trash"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
+                        <!-- Botón Filtrar -->
+                        <div class="row mb-4">
+                            <div class="col-md-2">
+                                <button class="btn btn-success w-100" @click="listarInmuebles">Filtrar</button>
                             </div>
+                        </div>
+
+                        <!-- Cargando -->
+                        <div v-if="cargando" class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p class="mt-2 text-muted">Cargando inmuebles...</p>
+                        </div>
+
+                        <!-- No hay datos -->
+                        <div v-if="!cargando && inmuebles.length === 0 && idEdificioSeleccionado"
+                            class="alert alert-warning">
+                            No existen inmuebles registrados para este edificio.
+                        </div>
+
+                        <!-- Tabla de inmuebles -->
+                        <div v-if="inmuebles.length > 0" class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Número</th>
+                                        <th>Tipo</th>
+                                        <th>Metros m2</th>
+                                        <th>% Participación</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="(inm, index) in inmuebles" :key="inm.idinmueble">
+                                        <td>{{ inm.numero_inm }}</td>
+                                        <td>{{ inm.tipo_inmueble }}</td>
+                                        <td>{{ inm.metro_cuadrado }}</td>
+                                        <td>{{ inm.porcentaje_inm }}%</td>
+                                        <td><span class="badge bg-label-primary">{{ inm.estado_inm }}</span></td>
+                                        <td>
+                                            <a :href="'/estate-edit?id=' + inm.idinmueble"
+                                                class="btn btn-sm btn-primary me-2">
+                                                <i class="bx bx-edit-alt"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-danger"
+                                                @click="prepararEliminar(inm.idinmueble)">
+                                                <i class="bx bx-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
 
                         <!-- Modal Eliminar -->
@@ -129,6 +127,8 @@
             </div>
         </div>
     </div>
+
+    <div class="layout-overlay layout-menu-toggle"></div>
 
     <!-- Core JS -->
     <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
@@ -164,7 +164,7 @@
                         return;
                     }
                     this.cargando = true;
-                    this.$http.get(`/api/edificio/${this.idEdificioSeleccionado}`).then(response => {
+                    this.$http.get(`/api/inmuebles/edificio/${this.idEdificioSeleccionado}`).then(response => {
                         this.inmuebles = response.body;
                         this.cargando = false;
                     }).catch(err => {
@@ -178,7 +178,7 @@
                     $("#modalEliminar").modal("show");
                 },
                 confirmarEliminar() {
-                    this.$http.delete(`/api/${this.idInmuebleEliminar}`).then(() => {
+                    this.$http.delete(`/api/inmuebles/${this.idInmuebleEliminar}`).then(() => {
                         this.listarInmuebles();
                         $("#modalEliminar").modal("hide");
                     }).catch(err => {
