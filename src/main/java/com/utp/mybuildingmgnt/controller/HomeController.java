@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
     @Autowired
-    @RequestMapping("/main")
+    @RequestMapping("/administrator")
     public String main() {
-        return "layout/main";
+        return "layout/administrator";
     }
 
 }
