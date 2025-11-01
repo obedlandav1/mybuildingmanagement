@@ -2,11 +2,15 @@ package com.utp.mybuildingmgnt.models;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -41,7 +45,12 @@ public class Usuario implements Serializable {
     @Column(name = "dni_usuario")
     private String dniusuario;
 
-    @Column(name = "clave")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(name = "clave", length = 100)
     private String clave;
+
+    @ManyToOne
+    @JoinColumn(name = "clientes_idcliente", referencedColumnName = "idcliente")
+    private Cliente cliente;
 
 }

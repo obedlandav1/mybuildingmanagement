@@ -1,9 +1,5 @@
 package com.utp.mybuildingmgnt.api;
 
-import com.utp.mybuildingmgnt.models.Usuario;
-import com.utp.mybuildingmgnt.repositories.UsuarioRepository;
-import com.utp.mybuildingmgnt.utils.PasswordUtils;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +11,17 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.utp.mybuildingmgnt.models.Usuario;
+import com.utp.mybuildingmgnt.repositories.UsuarioRepository;
+import com.utp.mybuildingmgnt.utils.PasswordUtils;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
@@ -28,11 +34,11 @@ public class UsuarioController {
     @Autowired
     PasswordUtils passutil;
 
-    @GetMapping("/usuarios")
-    public ResponseEntity<List<Usuario>> getAll(@RequestParam(required = false) String title) {
+    @GetMapping("/usuario/cliente/{id}")
+    public ResponseEntity<List<Usuario>> getByCliente(@PathVariable("id") int id) {
         try {
             List<Usuario> lista = new ArrayList<Usuario>();
-            repository.findAll().forEach(lista::add);
+            repository.findByCliente_Idcliente(id).forEach(lista::add);
             if (lista.isEmpty()) {
                 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
             }
@@ -54,8 +60,11 @@ public class UsuarioController {
                 if (passutil.matches(pass, u.getClave())) {
                     Map<String, Object> response = new HashMap<>();
                     response.put("status", "OK");
-                    response.put("nombre", u.getNombre_usuario()+" "+u.getApellido_usuario());
+                    response.put("idusuario",u.getIdusuario());
+                    response.put("nomusuario", u.getNombre_usuario() + " " + u.getApellido_usuario());
                     response.put("rol", u.getRol_usuario());
+                    response.put("idcliente",u.getCliente().getIdcliente());
+                    response.put("nomcliente",u.getCliente().getRazon_cliente());
                     Logger.getLogger(UsuarioController.class.getName()).log(Level.INFO, null, "HttpStatus: OK");
                     return new ResponseEntity<>(response, HttpStatus.OK);
                 } else {
@@ -72,4 +81,5 @@ public class UsuarioController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 }

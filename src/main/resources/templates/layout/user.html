@@ -10,7 +10,7 @@
         <div class="layout-container">
 
             <!-- Sidebar -->
-            <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+            <div th:replace="~{fragments/sidebar :: administrator}"></div>
             <!-- / Sidebar -->
 
             <!-- Layout container -->
@@ -25,11 +25,25 @@
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y" id="app" v-cloak>
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
-                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Registro /</span> Edificios
+                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Registro /</span> Usuarios
                             </h4>
-                            <a th:href="@{/building-create}">
-                                <button type="button" class="btn btn-primary">Crear</button>
-                            </a>
+
+                            <div class="d-flex align-items-center">
+                                <!--<label for="clienteSelect" class="form-label fw-bold m-0">Seleccione un cliente</label>-->
+                                <span class="text-muted fw-light">Seleccione un cliente</span>
+                                <select v-model="clienteid" @change="cargarUsuarios"
+                                    class="form-control form-select w-20 ms-2 me-2" id="clienteSelect" required>
+                                    <option disabled value="">-- Seleccione un cliente --</option>
+                                    <option v-for="cliente in clientes" :key="cliente.idcliente"
+                                        :value="cliente.idcliente">
+                                        {{ cliente.razon_cliente }}
+                                    </option>
+                                </select>
+                                <a th:href="@{/building-create}">
+                                    <button type="button" class="btn btn-primary">Crear</button>
+                                </a>
+                            </div>
+
                         </div>
                         <!-- Basic Bootstrap Table -->
                         <div class="card">
@@ -39,24 +53,20 @@
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
-                                            <th>Dirección</th>
-                                            <th>Ruc</th>
-                                            <th>Pais</th>
-                                            <th>Estado</th>
+                                            <th>Apellido</th>
+                                            <th>DNI</th>
+                                            <th>Rol</th>
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-border-bottom-0">
-                                        <tr v-for="e in edificios" :key="e.idedificio">
-                                            <td><strong>{{ e.nombre_edificio }}</strong></td>
-                                            <td>{{ e.direccion_edificio }}</td>
-                                            <td>{{ e.ruc }}</td>
-                                            <td>{{ e.pais_edificio }}</td>
+                                        <tr v-for="u in usuarios" :key="u.idusuario">
+                                            <td><strong>{{ u.nombre_usuario }}</strong></td>
+                                            <td>{{ u.apellido_usuario }}</td>
+                                            <td>{{ u.dniusuario }}</td>
                                             <td>
-                                                <!--<span class="badge bg-label-primary me-1">{{ e.estado_edificio }}</span>-->
-                                                <span class="badge me-1"
-                                                    :class="getEstadoInfo(e.estado_edificio).clase">
-                                                    {{ getEstadoInfo(e.estado_edificio).texto }}
+                                                <span class="badge me-1" :class="getRolInfo(u.rol_usuario).clase">
+                                                    {{ getRolInfo(u.rol_usuario).texto }}
                                                 </span>
                                             </td>
                                             <td>
@@ -66,20 +76,16 @@
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu">
-                                                        <a :href="'/building/' + e.idedificio + '/inmuebles'"
+                                                        <a :href="'/administrator/pass-edit/' + u.idusuario"
                                                             class="dropdown-item">
-                                                            <i class="bx bx-show me-1"></i> Inmuebles
+                                                            <i class="bx bx-key me-1"></i> Act. password
                                                         </a>
-                                                        <a :href="'/building/' + e.idedificio + '/propietarios'"
-                                                            class="dropdown-item">
-                                                            <i class="bx bx-user me-1"></i> Propietarios
-                                                        </a>
-                                                        <a :href="'/building-edit/' + e.idedificio"
+                                                        <a :href="'/administrator/user-edit/' + u.idusuario"
                                                             class="dropdown-item">
                                                             <i class="bx bx-edit-alt me-1"></i> Editar
                                                         </a>
                                                         <a href="javascript:void(0);" class="dropdown-item"
-                                                            @click="prepararEliminar(e.idedificio)">
+                                                            @click="prepararEliminar(u.idusuario)">
                                                             <i class="bx bx-trash me-1"></i> Eliminar
                                                         </a>
                                                     </div>
@@ -95,11 +101,15 @@
                         <!-- Cargando -->
                         <div v-if="cargando" class="text-center py-5">
                             <div class="spinner-border text-primary" role="status"></div>
-                            <p class="mt-2 text-muted">Cargando edificios...</p>
+                            <p class="mt-2 text-muted">Cargando usuarios...</p>
                         </div>
-
+                        <!-- No hay cliente seleccionado -->
+                        <div v-if="!cargando && !clienteid" class="alert alert-info w-100 mt-2" role="alert">
+                            Debe seleccionar un cliente para mostrar los usuarios.
+                        </div>
                         <!-- No hay datos -->
-                        <div v-if="!cargando && edificios.length === 0" class="alert alert-danger w-100 mt-2" role="alert">
+                        <div v-else-if="!cargando && usuarios.length === 0" class="alert alert-danger w-100 mt-2"
+                            role="alert">
                             No existen datos que mostrar
                         </div>
 
@@ -155,41 +165,58 @@
         new Vue({
             el: "#app",
             data: {
-                edificios: [],
+                clientes: [],
+                usuarios: [],
                 cargando: false,
-                error: null,
-                idedificio: null
+                error: '',
+                clienteid: '',
+                idusuario: ''
             },
             methods: {
-                listar: function () {
-                    this.cargando = true;
-                    this.$http.get('/api/edificio').then(response => {
-                        this.edificios = response.body;
-                        this.cargando = false;
-                    }).catch(err => {
-                        console.error(err);
-                        this.error = "Error al cargar los edificios.";
-                        this.cargando = false;
+                cargarClientes() {
+                    this.$http.get('/api/cliente').then(response => {
+                        this.clientes = response.data;
                     });
                 },
-                getEstadoInfo: function (codigo) {
+                cargarUsuarios: function () {
+                    if (this.clienteid) {
+                        console.log(this.clienteid);
+                        this.cargando = true;
+                        this.$http.get(`/api/usuario/cliente/${this.clienteid}`)
+                            .then(response => {
+                                this.usuarios = response.data;
+                                this.cargando = false;
+                            }).catch(error => {
+                                console.error(error);
+                                this.error = "Error al cargar los usuarios.";
+                                this.cargando = false;
+                            });
+                    } else {
+                        this.usuarios = []; // Si no hay cliente, vacía la tabla
+                    }
+                },
+                getRolInfo: function (codigo) {
                     switch (codigo) {
                         case 1:
-                            return { texto: "Activo", clase: "bg-label-success" };
+                            return { texto: "U. MAESTRO", clase: "bg-label-success" };
                         case 2:
-                            return { texto: "Suspendido", clase: "bg-label-warning" };
+                            return { texto: "ADMIN. EDIFICIOS", clase: "bg-label-success" };
                         case 3:
-                            return { texto: "Eliminado", clase: "bg-label-danger" };
+                            return { texto: "ADMIN. PROPIETARIO", clase: "bg-label-success" };
+                        case 4:
+                            return { texto: "PROPIETARIO", clase: "bg-label-warning" };
+                        case 5:
+                            return { texto: "CONSERJE", clase: "bg-label-warning" };
                         default:
                             return { texto: "Desconocido", clase: "bg-label-secondary" };
                     }
                 },
                 prepararEliminar: function (id) {
-                    this.idedificio = id;
+                    this.idusuario = id;
                     $("#modalToggle").modal("show");
                 },
                 confirmarEliminar: function () {
-                    this.$http.delete(`/api/edificio/${this.idedificio}`)
+                    this.$http.delete(`/api/usuario/${this.idusuario}`)
                         .then(() => {
                             this.listar();
                             $("#modalToggle").modal("hide");
@@ -201,7 +228,7 @@
                 }
             },
             mounted: function () {
-                this.listar();
+                this.cargarClientes();
             }
         });
     </script>

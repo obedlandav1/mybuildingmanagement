@@ -123,7 +123,7 @@
 
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" th:fragment="administrator">
     <div class="app-brand demo">
-        <a th:href="@{/main}" class="app-brand-link">
+        <a th:href="@{/administrator}" class="app-brand-link">
             <h4 class="demo menu-text fw-bolder ms-0 mt-0 mb-0">My building<br>Management</h4>
         </a>
 
@@ -139,72 +139,15 @@
             <span class="menu-header-text">Administrador</span>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a th:href="@{/administrator/client}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                <div data-i18n="Account Settings">Gestión edificios</div>
+                <div data-i18n="Account Settings">Clientes </div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a th:href="@{/building}" class="menu-link">
-                        <div data-i18n="Account">Edificios</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a th:href="@{/estate}" class="menu-link">
-                        <div data-i18n="Notifications">Inmuebles</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a th:href="@{/owner}" class="menu-link">
-                        <div data-i18n="Connections">Propietarios</div>
-                    </a>
-                </li>
-            </ul>
         </li>
         <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <a th:href="@{/administrator/user}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div data-i18n="Authentications">Gestión de tesorería</div>
+                <div data-i18n="Authentications">Usuarios</div>
             </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a th:href="@{/budget}" class="menu-link">
-                        <div data-i18n="Basic">Presupuestos</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a th:href="@{/bills}" class="menu-link">
-                        <div data-i18n="Basic">Recibos</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a th:href="@{/income}" class="menu-link">
-                        <div data-i18n="Basic">Ingresos</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a th:href="@{/expense}" class="menu-link">
-                        <div data-i18n="Basic">Egresos</div>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="menu-item">
-            <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div data-i18n="Misc">Reportes</div>
-            </a>
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a th:href="@{/balance}" class="menu-link">
-                        <div data-i18n="Error">Balance mensual</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a th:href="@{/expense-matrix}" class="menu-link">
-                        <div data-i18n="Under Maintenance">Matriz de gastos</div>
-                    </a>
-                </li>
-            </ul>
         </li>
 </aside>

@@ -106,29 +106,35 @@
                                     case 200:
                                         const user = response.body;
                                         const rol = user.rol;
-                                        this.mostrarModal('Bienvenido', 'Inicio de sesión exitoso. Redirigiendo...', 'text-success');
-                                        setTimeout(() => {
-                                            $("#modalToggle").modal("hide");
-                                            switch (rol) {
-                                                case 1:
-                                                    window.location.href = '/administrator';
-                                                    break;
-                                                case 2:
-                                                    window.location.href = '/manager';
-                                                    break;
-                                                case 3:
-                                                    window.location.href = '/automanagement';
-                                                    break;
-                                                case 4:
-                                                    window.location.href = '/owner';
-                                                    break;
-                                                case 5:
-                                                    window.location.href = '/janitor';
-                                                    break;
-                                                default:
-                                                    break;
-                                            }
-                                        }, 1500);
+                                        console.log(user);
+                                        console.log(`api/session/usuario?idusuario=${user.idusuario}&nomusuario=${user.nomusuario}&rolusuario=${user.rol}&idcliente=${user.idcliente}&nomcliente=${user.nomcliente}`);
+                                        this.$http.post(`api/session/usuario?idusuario=${user.idusuario}&nomusuario=${user.nomusuario}&rolusuario=${user.rol}&idcliente=${user.idcliente}&nomcliente=${user.nomcliente}`)
+                                            .then(response => {
+                                                this.mostrarModal('Bienvenido', 'Inicio de sesión exitoso. Redirigiendo...', 'text-success');
+                                                setTimeout(() => {
+                                                    $("#modalToggle").modal("hide");
+                                                    switch (rol) {
+                                                        case 1:
+                                                            window.location.href = '/administrator';
+                                                            break;
+                                                        case 2:
+                                                            window.location.href = '/manager';
+                                                            break;
+                                                        case 3:
+                                                            window.location.href = '/automanagement';
+                                                            break;
+                                                        case 4:
+                                                            window.location.href = '/owner';
+                                                            break;
+                                                        case 5:
+                                                            window.location.href = '/janitor';
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
+                                                }, 1500)
+                                            });
+                                        ;
                                         break;
                                     case 401:
                                         this.mostrarModal('Error', 'Contraseña incorrecta. Intente nuevamente.', 'text-danger');
