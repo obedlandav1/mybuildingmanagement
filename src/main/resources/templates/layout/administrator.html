@@ -30,7 +30,7 @@
                                     <div class="d-flex align-items-end row">
                                         <div class="col-sm-7">
                                             <div class="card-body">
-                                                <h5 class="card-title text-primary">Bienvenido Nombre de usuario! 🎉
+                                                <h5 class="card-title text-primary">Bienvenido {{ nomusuario }}! 🎉
                                                 </h5>
                                                 <p class="mb-4">
                                                     Automatiza la gestión de tu edificio. Olvídate del papeleo manual y
@@ -69,54 +69,8 @@
     </div>
 
     <div th:replace="~{fragments/scripts :: scripts}"></div>
+    <div th:replace="~{fragments/vue-global-scripts :: none}"></div>
 
-    <script>
-        new Vue({
-            el: "#app",
-            data: {
-                idusuario: '',
-                nomusuario: '',
-                rolusuario: '',
-                idcliente: '',
-                nomcliente:'',
-                clientes: [],
-                cargando: false,
-                error: null
-            },
-            methods: {
-                cargarUsuario: function () {
-                    this.$http.get('/api/session/usuario')
-                        .then(response => {
-                            const user = response.body;
-                            if (user) {
-                                this.idusuario = user.idusuario;
-                                this.nomusuario = user.nomusuario;
-                                this.rolusuario = user.rolusuario;
-                            };
-                        })
-                },
-                getRolInfo: function (codigo) {
-                    switch (codigo) {
-                        case 1:
-                            return { texto: "U. MAESTRO", clase: "bg-label-success" };
-                        case 2:
-                            return { texto: "ADMIN. EDIFICIOS", clase: "bg-label-success" };
-                        case 3:
-                            return { texto: "ADMIN. PROPIETARIO", clase: "bg-label-success" };
-                        case 4:
-                            return { texto: "PROPIETARIO", clase: "bg-label-warning" };
-                        case 5:
-                            return { texto: "CONSERJE", clase: "bg-label-warning" };
-                        default:
-                            return { texto: "Desconocido", clase: "bg-label-secondary" };
-                    }
-                }
-            },
-            mounted: function () {
-                this.cargarUsuario();
-            }
-        });
-    </script>
 </body>
 
 </html>

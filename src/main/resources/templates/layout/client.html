@@ -56,7 +56,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <div class="dropdown dropstart">
+                                                <div class="dropup dropstart">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                                         data-bs-toggle="dropdown" data-bs-display="static">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
@@ -71,8 +71,8 @@
                                                             <i class="bx bx-trash me-1"></i> Eliminar
                                                         </a>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                </td>
+                                            </div>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -136,6 +136,7 @@
     </div>
 
     <div th:replace="~{fragments/scripts :: scripts}"></div>
+    <div th:replace="~{fragments/vue-global-scripts :: none}"></div>
 
     <script>
         new Vue({

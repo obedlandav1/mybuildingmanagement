@@ -160,6 +160,7 @@
     </div>
 
     <div th:replace="~{fragments/scripts :: scripts}"></div>
+    <div th:replace="~{fragments/vue-global-scripts :: none}"></div>
 
     <script>
         new Vue({
@@ -193,22 +194,6 @@
                             });
                     } else {
                         this.usuarios = []; // Si no hay cliente, vacía la tabla
-                    }
-                },
-                getRolInfo: function (codigo) {
-                    switch (codigo) {
-                        case 1:
-                            return { texto: "U. MAESTRO", clase: "bg-label-success" };
-                        case 2:
-                            return { texto: "ADMIN. EDIFICIOS", clase: "bg-label-success" };
-                        case 3:
-                            return { texto: "ADMIN. PROPIETARIO", clase: "bg-label-success" };
-                        case 4:
-                            return { texto: "PROPIETARIO", clase: "bg-label-warning" };
-                        case 5:
-                            return { texto: "CONSERJE", clase: "bg-label-warning" };
-                        default:
-                            return { texto: "Desconocido", clase: "bg-label-secondary" };
                     }
                 },
                 prepararEliminar: function (id) {

@@ -2,6 +2,7 @@ package com.utp.mybuildingmgnt.models;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -51,6 +52,7 @@ public class Usuario implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "clientes_idcliente", referencedColumnName = "idcliente")
+    @JsonBackReference
     private Cliente cliente;
 
 }
