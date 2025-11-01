@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-template="vertical-menu-template-free">
+<html lang="es" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default">
 
 <head th:replace="~{fragments/head :: head('Inmuebles')}"></head>
 
@@ -13,122 +12,94 @@
 
             <!-- Layout page -->
             <div class="layout-page">
-
                 <!-- Navbar -->
                 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-                <!-- Content wrapper -->
+                <!-- Content -->
                 <div class="content-wrapper" id="app" v-cloak>
                     <div class="container-xxl flex-grow-1 container-p-y">
 
-                        <!-- Filtro y botón en la misma fila -->
-                        <div class="row mb-4 align-items-end">
-                            <!-- Filtro de Edificio -->
-                            <div class="col-md-6">
-                                <label class="form-label">Seleccione un Edificio</label>
+                        <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
+                            <h4 class="fw-bold py-0 mb-0">
+                                <span class="text-muted fw-light">Registro /</span> Inmuebles
+                            </h4>
+
+                            <div class="d-flex gap-2">
+                                <a th:href="@{/estate-create}">
+                                    <button type="button" class="btn btn-primary">Crear</button>
+                                </a>
+
                                 <select v-model="idEdificioSeleccionado" class="form-select">
-                                    <option value="">-- Seleccione --</option>
+                                    <option value="">Elegir Edificio</option>
                                     <option v-for="ed in edificios" :key="ed.idedificio" :value="ed.idedificio">
                                         {{ ed.nombre_edificio }}
                                     </option>
                                 </select>
-                            </div>
 
-                            <!-- Botón Crear Inmueble -->
-                            <div class="col-md-6 text-end">
-                                <a th:href="@{/estate-create}">
-                                    <button type="button" class="btn btn-primary">Crear Inmueble</button>
-                                </a>
+                                <button class="btn btn-success" @click="listarInmuebles">Filtrar</button>
                             </div>
                         </div>
-
-                        <!-- Botón Filtrar -->
-                        <div class="row mb-4">
-                            <div class="col-md-2">
-                                <button class="btn btn-success w-100" @click="listarInmuebles">Filtrar</button>
-                            </div>
+                        <!-- Mensaje inicial -->
+                        <div v-if="!idEdificioSeleccionado && !cargando" class="alert alert-info w-100">
+                            Seleccione un edificio para listar sus propietarios.
                         </div>
-
                         <!-- Cargando -->
-                        <div v-if="cargando" class="text-center py-4">
+                        <div v-if="cargando" class="text-center py-5">
                             <div class="spinner-border text-primary" role="status"></div>
                             <p class="mt-2 text-muted">Cargando inmuebles...</p>
                         </div>
 
-                        <!-- No hay datos -->
+                        <!-- Sin resultados -->
                         <div v-if="!cargando && inmuebles.length === 0 && idEdificioSeleccionado"
-                            class="alert alert-warning">
+                            class="alert alert-danger w-100">
                             No existen inmuebles registrados para este edificio.
                         </div>
 
-                        <!-- Tabla de inmuebles -->
-                        <div v-if="inmuebles.length > 0" class="table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Número</th>
-                                        <th>Tipo</th>
-                                        <th>Metros m2</th>
-                                        <th>% Participación</th>
-                                        <th>Estado</th>
-                                        <th>Acciones</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(inm, index) in inmuebles" :key="inm.idinmueble">
-                                        <td>{{ inm.numero_inm }}</td>
-                                        <td>{{ inm.tipo_inmueble }}</td>
-                                        <td>{{ inm.metro_cuadrado }}</td>
-                                        <td>{{ inm.porcentaje_inm }}%</td>
-                                        <td><span class="badge bg-label-primary">{{ inm.estado_inm }}</span></td>
-                                        <td>
-                                            <a :href="'/estate-edit?id=' + inm.idinmueble"
-                                                class="btn btn-sm btn-primary me-2">
-                                                <i class="bx bx-edit-alt"></i>
-                                            </a>
-                                            <button class="btn btn-sm btn-danger"
-                                                @click="prepararEliminar(inm.idinmueble)">
-                                                <i class="bx bx-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- Modal Eliminar -->
-                        <div class="modal fade" id="modalEliminar" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title">Eliminar Inmueble</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        ¿Está seguro que desea eliminar este inmueble? Esta acción no se puede deshacer.
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-secondary"
-                                            data-bs-dismiss="modal">Cancelar</button>
-                                        <button type="button" class="btn btn-primary"
-                                            @click="confirmarEliminar">Eliminar</button>
-                                    </div>
-                                </div>
+                        <!-- Tabla -->
+                        <div v-if="inmuebles.length > 0" class="card">
+                            <h5 class="card-header">Información de Inmuebles</h5>
+                            <div class="table-responsive text-nowrap">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Número</th>
+                                            <th>Tipo</th>
+                                            <th>Área (m²)</th>
+                                            <th>Porcentaje</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="inm in inmuebles" :key="inm.idinmueble">
+                                            <td>{{ inm.numero_inm }}</td>
+                                            <td>{{ inm.tipo_inmueble }}</td>
+                                            <td>{{ inm.metro_cuadrado }}</td>
+                                            <td>{{ inm.porcentaje_inm }}%</td>
+                                            <td>
+                                                <span class="badge bg-label-primary">{{ inm.estado_inm }}</span>
+                                            </td>
+                                            <td>
+                                                <a :href="'/estate-edit?id=' + inm.idinmueble"
+                                                    class="btn btn-sm btn-primary me-1">Editar</a>
+                                                <button class="btn btn-sm btn-danger"
+                                                    @click="eliminarInmueble(inm.idinmueble)">Eliminar</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
                     </div>
 
-                    <!-- Footer -->
                     <div th:replace="~{fragments/footer :: footer}"></div>
-
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="layout-overlay layout-menu-toggle"></div>
+        <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
 
     <!-- Core JS -->
     <script th:src="@{/vendor/libs/jquery/jquery.js}"></script>
@@ -147,16 +118,13 @@
                 edificios: [],
                 inmuebles: [],
                 idEdificioSeleccionado: '',
-                idInmuebleEliminar: null,
                 cargando: false
             },
             methods: {
                 listarEdificios() {
-                    this.$http.get('/api/edificio').then(response => {
-                        this.edificios = response.body;
-                    }).catch(err => {
-                        console.error(err);
-                    });
+                    this.$http.get('/api/edificio')
+                        .then(response => this.edificios = response.body)
+                        .catch(err => console.error('Error al cargar edificios:', err));
                 },
                 listarInmuebles() {
                     if (!this.idEdificioSeleccionado) {
@@ -164,27 +132,28 @@
                         return;
                     }
                     this.cargando = true;
-                    this.$http.get(`/api/inmuebles/edificio/${this.idEdificioSeleccionado}`).then(response => {
-                        this.inmuebles = response.body;
-                        this.cargando = false;
-                    }).catch(err => {
-                        console.error(err);
-                        alert('Error al cargar inmuebles');
-                        this.cargando = false;
-                    });
+                    this.$http.get(`/api/inmuebles/edificio/${this.idEdificioSeleccionado}`)
+                        .then(response => {
+                            this.inmuebles = response.body;
+                            this.cargando = false;
+                        })
+                        .catch(err => {
+                            console.error('Error al cargar inmuebles:', err);
+                            alert('Error al cargar los inmuebles');
+                            this.cargando = false;
+                        });
                 },
-                prepararEliminar(id) {
-                    this.idInmuebleEliminar = id;
-                    $("#modalEliminar").modal("show");
-                },
-                confirmarEliminar() {
-                    this.$http.delete(`/api/inmuebles/${this.idInmuebleEliminar}`).then(() => {
-                        this.listarInmuebles();
-                        $("#modalEliminar").modal("hide");
-                    }).catch(err => {
-                        console.error(err);
-                        alert('Error al eliminar inmueble');
-                    });
+                eliminarInmueble(id) {
+                    if (!confirm('¿Desea eliminar este inmueble?')) return;
+                    this.$http.delete(`/api/inmuebles/eliminar/${id}`)
+                        .then(() => {
+                            alert('Inmueble eliminado correctamente');
+                            this.listarInmuebles();
+                        })
+                        .catch(err => {
+                            console.error('Error al eliminar inmueble:', err);
+                            alert('Error al eliminar inmueble');
+                        });
                 }
             },
             mounted() {
@@ -192,6 +161,7 @@
             }
         });
     </script>
+
 </body>
 
 </html>

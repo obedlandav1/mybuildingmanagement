@@ -40,9 +40,9 @@ public class Inmueble implements Serializable {
     private double metro_cuadrado;
 
     @Column(name = "edificios_idedificio")
-    private long edificios_idedificio;
+    private Long edificios_idedificio;
 
     @Column(name = "propietarios_idpropietario")
-    private long propietarios_idpropietario;
+    private Long propietarios_idpropietario;
 
 }

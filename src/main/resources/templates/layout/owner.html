@@ -20,6 +20,7 @@
                 <div class="content-wrapper" id="app" v-cloak>
                     <div class="container-xxl flex-grow-1 container-p-y">
 
+                        <!-- Título y acciones -->
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
                             <h4 class="fw-bold py-0 mb-0">
                                 <span class="text-muted fw-light">Registro /</span> Propietarios
@@ -30,15 +31,24 @@
                                     <button type="button" class="btn btn-primary">Crear</button>
                                 </a>
 
-                                <select v-model="idEdificioSeleccionado" class="form-select">
+                                <select v-model="idEdificioSeleccionado" class="form-select"
+                                    title="Seleccione un edificio">
                                     <option value="">Elegir Edificio</option>
                                     <option v-for="ed in edificios" :key="ed.idedificio" :value="ed.idedificio">
-                                                {{ ed.nombre_edificio }}
-                                            </option>
+                                        {{ ed.nombre_edificio }}
+                                    </option>
                                 </select>
 
-                                <button class="btn btn-success" @click="cargarPropietarios">Filtrar</button>
+                                <button class="btn btn-success" :disabled="!idEdificioSeleccionado"
+                                    @click="cargarPropietarios">
+                                    Filtrar
+                                </button>
                             </div>
+                        </div>
+
+                        <!-- Mensaje inicial -->
+                        <div v-if="!idEdificioSeleccionado && !cargando" class="alert alert-info w-100">
+                            Seleccione un edificio para listar sus propietarios.
                         </div>
 
                         <!-- Cargando -->
@@ -47,9 +57,14 @@
                             <p class="mt-2 text-muted">Cargando propietarios...</p>
                         </div>
 
+                        <!-- Error -->
+                        <div v-if="!cargando && error" class="alert alert-danger w-100">
+                            {{ error }}
+                        </div>
+
                         <!-- No hay datos -->
-                        <div v-if="!cargando && propietarios.length === 0 && idEdificioSeleccionado"
-                            class="alert alert-danger w-100">
+                        <div v-if="!cargando && propietarios.length === 0 && idEdificioSeleccionado && !error"
+                            class="alert alert-warning w-100">
                             No existen datos que mostrar
                         </div>
 
@@ -77,13 +92,20 @@
                                             <td>{{ prop.telefono_pro }}</td>
                                             <td>{{ prop.correo_pro }}</td>
                                             <td>
-                                                <span class="badge bg-label-primary">{{ prop.estado_pro }}</span>
+                                                <span
+                                                    :class="['badge', prop.estado_pro === 'Activo' ? 'bg-label-success' : 'bg-label-danger']">
+                                                    {{ prop.estado_pro }}
+                                                </span>
                                             </td>
                                             <td>
                                                 <a :href="'/owner-edit?id=' + prop.idpropietario"
-                                                    class="btn btn-sm btn-primary me-1">Editar</a>
+                                                    class="btn btn-sm btn-primary me-1">
+                                                    Editar
+                                                </a>
                                                 <button class="btn btn-sm btn-danger"
-                                                    @click="eliminarPropietario(prop.idpropietario)">Eliminar</button>
+                                                    @click="eliminarPropietario(prop.idpropietario)">
+                                                    Eliminar
+                                                </button>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -111,6 +133,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
+    <!-- Script principal Vue -->
     <script>
         new Vue({
             el: "#app",
@@ -118,36 +141,55 @@
                 propietarios: [],
                 edificios: [],
                 idEdificioSeleccionado: '',
-                cargando: false
+                cargando: false,
+                error: ''
             },
             methods: {
+                // Listar edificios
                 listarEdificios() {
-                    this.$http.get('/api/edificios')
+                    this.$http.get('/api/edificio')
                         .then(response => {
                             this.edificios = response.body;
                         })
-                        .catch(err => console.error('Error al cargar edificios:', err));
+                        .catch(err => {
+                            console.error('Error al cargar edificios:', err);
+                            this.error = 'Error al cargar la lista de edificios.';
+                        });
                 },
+
+                // Cargar propietarios por edificio
                 cargarPropietarios() {
                     if (!this.idEdificioSeleccionado) {
                         alert('Seleccione un edificio primero');
                         return;
                     }
+
                     this.cargando = true;
-                    this.$http.get(`/api/por-edificio/${this.idEdificioSeleccionado}`)
+                    this.error = '';
+                    this.propietarios = [];
+
+                    this.$http.get(`/api/propietarios/edificio/${this.idEdificioSeleccionado}`)
                         .then(response => {
-                            this.propietarios = response.body;
-                            this.cargando = false;
+                            if (Array.isArray(response.body)) {
+                                this.propietarios = response.body;
+                            } else {
+                                this.propietarios = [];
+                            }
                         })
                         .catch(err => {
                             console.error('Error al cargar propietarios:', err);
-                            alert('Error al cargar los propietarios');
+                            this.error = 'Error al obtener los propietarios.';
+                        })
+                        .finally(() => {
                             this.cargando = false;
                         });
                 },
+
+                // Eliminar propietario
                 eliminarPropietario(id) {
                     if (!confirm('¿Desea eliminar este propietario?')) return;
-                    this.$http.delete(`/api/propietario/eliminar/${id}`)
+
+                    this.$http.delete(`/api/propietarios/eliminar/${id}`)
                         .then(() => {
                             alert('Propietario eliminado correctamente');
                             this.cargarPropietarios();
@@ -158,6 +200,8 @@
                         });
                 }
             },
+
+            // Cargar edificios al iniciar
             mounted() {
                 this.listarEdificios();
             }

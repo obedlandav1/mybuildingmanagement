@@ -1,13 +1,18 @@
 package com.utp.mybuildingmgnt.models;
 
-import jakarta.persistence.*;
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
-import java.io.Serializable;
 
 @Entity
 @NoArgsConstructor
@@ -34,12 +39,13 @@ public class Propietario implements Serializable {
     private String apellido_pro;
 
     @Column(name = "telefono_pro")
-    private int telefono_pro;
+    private String telefono_pro;
 
     @Column(name = "correo_pro")
     private String correo_pro;
 
     @Column(name = "estado_pro")
-    private String estado_pro;
+    private long estado_pro;
+
 
 }

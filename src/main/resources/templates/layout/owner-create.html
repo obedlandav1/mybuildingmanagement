@@ -17,58 +17,92 @@
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
 
+                        <!-- Título y regresar -->
                         <div class="align-items-center d-flex justify-content-between mt-0 mb-4">
-                            <h4 class="fw-bold py-0 mb-0"><span class="text-muted fw-light">Crear /</span> Propietario
+                            <h4 class="fw-bold py-0 mb-0">
+                                <span class="text-muted fw-light">Crear /</span> Propietario
                             </h4>
                             <a th:href="@{/owner}">
                                 <button type="button" class="btn btn-primary">Regresar</button>
                             </a>
                         </div>
 
+                        <!-- Formulario -->
                         <div class="col-xxl">
                             <div class="card mb-4">
                                 <div class="card-body">
+
+                                    <!-- Alerta de error -->
+                                    <div v-if="error" class="alert alert-danger" role="alert">
+                                        {{ error }}
+                                    </div>
+
+                                    <!-- Alerta de éxito -->
+                                    <div v-if="exito" class="alert alert-success" role="alert">
+                                        {{ exito }}
+                                    </div>
+
                                     <form @submit.prevent="crearPropietario">
+                                        <!-- Edificio -->
+                                        <div class="row mb-3">
+                                            <label class="col-sm-2 col-form-label">Edificio</label>
+                                            <div class="col-sm-10">
+                                                <select v-model="idEdificioSeleccionado" class="form-select" required>
+                                                    <option value="">Seleccione un edificio</option>
+                                                    <option v-for="ed in edificios" :key="ed.idedificio"
+                                                        :value="ed.idedificio">
+                                                        {{ ed.nombre_edificio }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- DNI -->
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">DNI</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" v-model="propietario.dni_pro"
-                                                    required />
+                                                <input type="text" class="form-control"
+                                                    v-model.trim="propietario.dni_pro" maxlength="8" required />
                                             </div>
                                         </div>
 
+                                        <!-- Nombre -->
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Nombre</label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control" v-model="propietario.nombre_pro"
-                                                    required />
+                                                <input type="text" class="form-control"
+                                                    v-model.trim="propietario.nombre_pro" required />
                                             </div>
                                         </div>
 
+                                        <!-- Apellido -->
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Apellido</label>
                                             <div class="col-sm-10">
                                                 <input type="text" class="form-control"
-                                                    v-model="propietario.apellido_pro" required />
+                                                    v-model.trim="propietario.apellido_pro" required />
                                             </div>
                                         </div>
 
+                                        <!-- Teléfono -->
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Teléfono</label>
                                             <div class="col-sm-10">
-                                                <input type="number" class="form-control"
-                                                    v-model="propietario.telefono_pro" required />
+                                                <input type="tel" class="form-control"
+                                                    v-model.trim="propietario.telefono_pro" required />
                                             </div>
                                         </div>
 
+                                        <!-- Correo -->
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Correo</label>
                                             <div class="col-sm-10">
                                                 <input type="email" class="form-control"
-                                                    v-model="propietario.correo_pro" required />
+                                                    v-model.trim="propietario.correo_pro" required />
                                             </div>
                                         </div>
 
+                                        <!-- Estado 
                                         <div class="row mb-3">
                                             <label class="col-sm-2 col-form-label">Estado</label>
                                             <div class="col-sm-10">
@@ -78,11 +112,13 @@
                                                     <option value="Inactivo">Inactivo</option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <div class="row justify-content-end">
                                             <div class="col-sm-10">
-                                                <button type="submit" class="btn btn-primary">Crear</button>
+                                                <button type="submit" class="btn btn-primary" :disabled="procesando">
+                                                    {{ procesando ? 'Guardando...' : 'Crear' }}
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -109,6 +145,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
+    <!-- Script Vue -->
     <script>
         new Vue({
             el: '#app',
@@ -119,21 +156,56 @@
                     apellido_pro: '',
                     telefono_pro: '',
                     correo_pro: '',
-                    estado_pro: ''
-                }
+                    estado_pro: 1
+                },
+                edificios: [],
+                idEdificioSeleccionado: '',
+                procesando: false,
+                error: '',
+                exito: ''
             },
             methods: {
-                crearPropietario() {
-                    this.$http.post('/api/propietario/crear', this.propietario)
-                        .then(response => {
-                            alert('Propietario creado correctamente');
-                            window.location.href = '/owner';
+                // Listar edificios disponibles
+                listarEdificios() {
+                    this.$http.get('/api/edificio')
+                        .then(res => {
+                            this.edificios = res.body;
                         })
-                        .catch(error => {
-                            console.error('Error al crear propietario:', error);
-                            alert('Ocurrió un error al crear el propietario');
+                        .catch(err => {
+                            console.error('Error al cargar edificios:', err);
+                            this.error = 'No se pudo cargar la lista de edificios.';
+                        });
+                },
+
+                // Crear propietario
+                crearPropietario() {
+                    if (!this.idEdificioSeleccionado) {
+                        this.error = 'Debe seleccionar un edificio.';
+                        return;
+                    }
+
+                    this.procesando = true;
+                    this.error = '';
+                    this.exito = '';
+
+                    this.$http.post('/api/propietarios/crear', this.propietario)
+                        .then(() => {
+                            this.exito = 'Propietario creado correctamente.';
+                            setTimeout(() => {
+                                window.location.href = '/owner';
+                            }, 1000);
+                        })
+                        .catch(err => {
+                            console.error('Error al crear propietario:', err);
+                            this.error = 'Ocurrió un error al crear el propietario.';
+                        })
+                        .finally(() => {
+                            this.procesando = false;
                         });
                 }
+            },
+            mounted() {
+                this.listarEdificios();
             }
         });
     </script>
